@@ -1,0 +1,19 @@
+name: CI
+
+on:
+  push:
+    branches: [ ci ]
+  pull_request:
+    branches: [ ci ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+      with:
+        repository: superjer/tinyc.games
+    - name: install software
+      run: sudo apt install tcc libsdl2-dev libsdl2-ttf-dev libglew-dev

@@ -16,8 +16,9 @@ jobs:
       with:
         repository: superjer/tinyc.games
     - name: install software
-      run: sudo apt install tcc libsdl2-dev libsdl2-ttf-dev libglew-dev libpulse-dev
+      run: sudo apt install tcc libsdl2-dev libsdl2-ttf-dev libglew-dev libpulse0
     - name: build flappy
       run: |
+        ls /usr/lib/x86_64-linux-gnu/libpulsecommon-*
         cd flappy
         tcc -I/usr/include/SDL2 -lSDL2 -lSDL2_ttf flappy.c

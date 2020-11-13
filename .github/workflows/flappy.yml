@@ -18,4 +18,6 @@ jobs:
     - name: install software
       run: sudo apt install tcc libsdl2-dev libsdl2-ttf-dev libglew-dev
     - name: build flappy
-      run: tcc -I/usr/include/SDL2 -lSDL2 -lSDL2_ttf flappy.c
+      run: |
+        cd flappy
+        tcc -I/usr/include/SDL2 -lSDL2 -lSDL2_ttf flappy.c

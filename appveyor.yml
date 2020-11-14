@@ -9,6 +9,7 @@ clone_script:
 - cmd: git clone https://github.com/superjer/tinyc.games.git
 environment:
   matrix:
+  only:
   - job_name: blocko 
     build:
       project: C:\projects\tinyc-games-ci\tinyc.games\blocko\vs2019-blocko\vs2019-blocko.sln
@@ -16,6 +17,7 @@ environment:
       artifacts:
         - path: tinyc.games\blocko\vs2019-blocko\x64\Debug\vs2019-blocko.exe
   matrix1: 
+  only:
   - job_name: flappy
     build_script:
       - cmd: dir

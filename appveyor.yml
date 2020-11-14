@@ -3,7 +3,6 @@ skip_tags: true
 image: Visual Studio 2019
 configuration: Debug
 platform:
-- x86
 - x64
 clone_script:
 - cmd: git clone https://github.com/superjer/tinyc.games.git
@@ -11,3 +10,6 @@ build:
   project: C:\projects\tinyc-games-ci\tinyc.games\blocko\vs2019-blocko\vs2019-blocko.sln
   verbosity: normal
 test: off
+artifacts:
+  - path: C:\projects\tinyc-games-ci\tinyc.games\blocko\vs2019-blocko\x64\Debug\vs2019-blocko.exe
+    name: vs2019-blocko.exe

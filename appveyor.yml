@@ -21,6 +21,13 @@ for:
     build:
       project: C:\projects\tinyc-games-ci\tinyc.games\blocko\vs2019-blocko\vs2019-blocko.sln
       verbosity: normal
+    
+    platform:
+      - x64
+    
+    artifacts:
+      - path: tinyc.games\blocko\vs2019-blocko\x64\Debug\vs2019-blocko.exe
+      - name: vs2019-blocko.exe
   -
     matrix:
       only:
@@ -41,6 +48,9 @@ for:
         C:\projects\tinyc-games-ci\tinyc.games\_win\tcc-%ARCH%\tcc.exe -DSDL_MAIN_HANDLED -I%SDL%\include -I%TTF%\include -L%SDL%\lib\%ARCH% -L%TTF%\lib\%ARCH% -lSDL2 -lSDL2_ttf flappy.c
 
         dir
+    artifacts:
+      - path: tinyc.games\flappy\flappy.exe
+      - name: flappy.exe
 #for:
 #  - matrix:
 #      only:

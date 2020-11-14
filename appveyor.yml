@@ -2,7 +2,10 @@ version: '{build}'
 skip_tags: true
 image: Visual Studio 2019
 
+configuration:
+  - Release
 platform:
+  - x86
   - x64
 clone_script:
   - cmd: git clone https://github.com/superjer/tinyc.games.git
@@ -21,9 +24,6 @@ for:
       project: C:\projects\tinyc-games-ci\tinyc.games\blocko\vs2019-blocko\vs2019-blocko.sln
       verbosity: normal
     
-    platform:
-      - x64
-    
     artifacts:
       - path: tinyc.games\blocko\vs2019-blocko\x64\Debug\vs2019-blocko.exe
         name: vs2019-blocko.exe
@@ -31,11 +31,7 @@ for:
     matrix:
       only:
         - job_name: flappy
-
-    platform:
-      - x64
-      - x86
-      
+    
     build_script:
     - cmd: >-
         reg Query "HKLM\Hardware\Description\System\CentralProcessor\0" | find /i "x86" > NUL && (set ARCH=x86) || (set ARCH=x64)

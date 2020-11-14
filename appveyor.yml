@@ -8,18 +8,11 @@ platform:
 environment:
   matrix:
 
-  - job_name: Build
+  - job_name: blocko
     appveyor_build_project: C:\projects\tinyc-games-ci\tinyc.games\blocko\vs2019-blocko\vs2019-blocko.sln
     appveyor_build_verbosity: normal
     
-    
-  - job_name: blocko
-    job_depends_on: Build
-    
   - job_name: flappy
-    job_depends_on: Build
-
-  - job_name: Tests C
     job_depends_on: Build
     
 clone_script:

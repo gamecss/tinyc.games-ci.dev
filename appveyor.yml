@@ -11,5 +11,5 @@ build:
   verbosity: normal
 test: off
 artifacts:
-  - path: C:\projects\tinyc-games-ci\tinyc.games\blocko\vs2019-blocko\x64\Debug\vs2019-blocko.exe
+  - path: tinyc.games\blocko\vs2019-blocko\x64\Debug\vs2019-blocko.exe
     name: vs2019-blocko.exe

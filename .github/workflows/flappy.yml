@@ -1,4 +1,4 @@
-name: CI
+name: flappy
 
 on:
   push:
@@ -20,7 +20,7 @@ jobs:
     - name: build flappy
       run: |
         cd flappy
-        tcc -I/usr/include/SDL2 -lSDL2 -lSDL2_ttf flappy.c
+        tcc -I/usr/include/SDL2 -I/usr/lib/x86_64-linux-gnu -I/usr/lib/x86_64-linux-gnu/pulseaudio -lSDL2 -lSDL2_ttf flappy.c
     - uses: actions/upload-artifact@v2
       with:
         name: flappy

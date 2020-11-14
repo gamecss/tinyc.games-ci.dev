@@ -15,8 +15,7 @@ for:
     matrix:
       only:
         - job_name: blocko
-          configuration: 
-            - Debug
+          configuration: Debug
           build:
             project: C:\projects\tinyc-games-ci\tinyc.games\blocko\vs2019-blocko\vs2019-blocko.sln
             verbosity: normal

@@ -1,7 +1,9 @@
 version: '{build}'
 skip_tags: true
 image: Visual Studio 2019
-
+configuration: 
+  - Debug
+  - Release
 platform:
   - x64
   - x86
@@ -17,9 +19,6 @@ for:
       only:
         - job_name: blocko
           
-          configuration: 
-            - Debug
-            - Release
           build:
             project: C:\projects\tinyc-games-ci\tinyc.games\blocko\vs2019-blocko\vs2019-blocko.sln
             verbosity: normal
@@ -32,7 +31,8 @@ for:
     matrix:
       only:
         - job_name: flappy
-    build_script:
-    - cmd: dir
+        
+          build_script:
+            - cmd: dir
     
 test: off

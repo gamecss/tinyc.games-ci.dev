@@ -17,7 +17,6 @@ for:
         - job_name: blocko
           configuration: 
             - Debug
-            - Release
           build:
             project: C:\projects\tinyc-games-ci\tinyc.games\blocko\vs2019-blocko\vs2019-blocko.sln
             verbosity: normal

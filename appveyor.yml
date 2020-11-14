@@ -5,19 +5,34 @@ configuration: Debug
 platform:
 - x64
 - x86
+clone_script:
+- cmd: git clone https://github.com/superjer/tinyc.games.git
 environment:
   matrix:
 
   - job_name: blocko
-    appveyor_build_project: C:\projects\tinyc-games-ci\tinyc.games\blocko\vs2019-blocko\vs2019-blocko.sln
-    appveyor_build_verbosity: normal
     
   - job_name: flappy
-    job_depends_on: Build
+
+    name: vs2019-blocko.exe
+for:
+
+  -
+    matrix:
+      only:
+        - job_name: blocko
+
+    build:
+      project: C:\projects\tinyc-games-ci\tinyc.games\blocko\vs2019-blocko\vs2019-blocko.sln
+      verbosity: normal
+  -
+    matrix:
+      only:
+        - job_name: flappy
+
+    build_script:
+    - cmd: dir
     
-clone_script:
-- cmd: git clone https://github.com/superjer/tinyc.games.git
 test: off
 artifacts:
   - path: tinyc.games\blocko\vs2019-blocko\x64\Debug\vs2019-blocko.exe
-    name: vs2019-blocko.exe

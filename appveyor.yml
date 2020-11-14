@@ -4,7 +4,6 @@ image: Visual Studio 2019
 
 platform:
   - x64
-  - x86
 clone_script:
   - cmd: git clone https://github.com/superjer/tinyc.games.git
 environment:
@@ -33,6 +32,10 @@ for:
       only:
         - job_name: flappy
 
+    platform:
+      - x64
+      - x86
+      
     build_script:
     - cmd: >-
         reg Query "HKLM\Hardware\Description\System\CentralProcessor\0" | find /i "x86" > NUL && (set ARCH=x86) || (set ARCH=x64)

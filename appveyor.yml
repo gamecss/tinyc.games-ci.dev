@@ -36,7 +36,7 @@ for:
 
         set PATH=%PATH%;%SDL%\lib\%ARCH%;%TTF%\lib\%ARCH% 
 
-        '..\_win\tcc-%ARCH%\tcc.exe' -DSDL_MAIN_HANDLED -I%SDL%\include -I%TTF%\include -L%SDL%\lib\%ARCH% -L%TTF%\lib\%ARCH% -lSDL2 -lSDL2_ttf flappy.c
+        'C:\projects\tinyc-games-ci\tinyc.games\_win\tcc-%ARCH%\tcc.exe' -DSDL_MAIN_HANDLED -I%SDL%\include -I%TTF%\include -L%SDL%\lib\%ARCH% -L%TTF%\lib\%ARCH% -lSDL2 -lSDL2_ttf flappy.c
 
         dir
 #for:

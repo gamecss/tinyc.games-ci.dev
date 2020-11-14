@@ -1,0 +1,16 @@
+version: {build}
+branches:
+  only:
+    ci
+image: Visual Studio 2019
+configuration: release
+platform: x64
+build_script:
+- cmd: >-
+    git clone https://github.com/superjer/tinyc.games.git
+    cd tinyc.games
+    cd flappy
+    set CC=..\_win\tcc-x64\tcc.exe
+    set SDL=..\_win\SDL2-2.0.5
+    set TTF=..\_win\SDL2_ttf-2.0.14
+    %CC% -DSDL_MAIN_HANDLED -I%SDL%\include -I%TTF%\include -L%SDL%\lib\%ARCH% -L%TTF%\lib\%ARCH% -lSDL2 -lSDL2_ttf flappy.c

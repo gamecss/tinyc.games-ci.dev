@@ -27,7 +27,7 @@ for:
     
     artifacts:
       - path: tinyc.games\blocko\vs2019-blocko\x64\Debug\vs2019-blocko.exe
-      - name: vs2019-blocko.exe
+        name: vs2019-blocko.exe
   -
     matrix:
       only:
@@ -50,7 +50,7 @@ for:
         dir
     artifacts:
       - path: tinyc.games\flappy\flappy.exe
-      - name: flappy.exe
+        name: flappy.exe
 #for:
 #  - matrix:
 #      only:

@@ -19,6 +19,9 @@ jobs:
       run: sudo apt install tcc libsdl2-dev libsdl2-ttf-dev libglew-dev libpulse0
     - name: build flappy
       run: |
-        #ln /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-11.1.so /usr/lib/x86_64-linux-gnu/libpulsecommon-11.1.so
         cd flappy
-        tcc -lSDL2 -lSDL2_ttf flappy.c #-I/usr/include/SDL2 -lSDL2 -lSDL2_ttf flappy.c
+        tcc -I/usr/include/SDL2 -lSDL2 -lSDL2_ttf flappy.c
+    - uses: actions/upload-artifact@v2
+      with:
+        name: flappy
+        path: flappy\flappy

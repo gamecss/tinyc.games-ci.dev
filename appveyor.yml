@@ -4,11 +4,26 @@ image: Visual Studio 2019
 configuration: Debug
 platform:
 - x64
+- x86
+environment:
+  matrix:
+
+  - job_name: Build
+    appveyor_build_project: C:\projects\tinyc-games-ci\tinyc.games\blocko\vs2019-blocko\vs2019-blocko.sln
+    appveyor_build_verbosity: normal
+    
+    
+  - job_name: blocko
+    job_depends_on: Build
+    
+  - job_name: flappy
+    job_depends_on: Build
+
+  - job_name: Tests C
+    job_depends_on: Build
+    
 clone_script:
 - cmd: git clone https://github.com/superjer/tinyc.games.git
-build:
-  project: C:\projects\tinyc-games-ci\tinyc.games\blocko\vs2019-blocko\vs2019-blocko.sln
-  verbosity: normal
 test: off
 artifacts:
   - path: tinyc.games\blocko\vs2019-blocko\x64\Debug\vs2019-blocko.exe

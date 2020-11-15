@@ -19,7 +19,10 @@ jobs:
     #- uses: actions/setup-dotnet@main
     #  with:
     #    dotnet-version: 5.0.x
-    - uses: microsoft/setup-msbuild@master
+    #- uses: microsoft/setup-msbuild@master
+    - name: Setup MSBuild Path
+      run: |
+        C:\ProgramData\Chocolatey\bin\vswhere.exe -products * -requires Microsoft.Component.MSBuild -property installationPath -latest
     - name: Build blocko
       run: |
         cd blocko\vs2019-blocko

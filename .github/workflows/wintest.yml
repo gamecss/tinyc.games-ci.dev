@@ -15,6 +15,7 @@ jobs:
       run: |
         $VSPath=(C:\ProgramData\Chocolatey\bin\vswhere.exe -products * -requires Microsoft.Component.MSBuild -property installationPath -latest)
         [environment]::SetEnvironmentvariable("PATH", "'$env:PATH';${VSPath}\MSBuild\Current\Bin\amd64", "Machine")
+        dir ${VSPath}\MSBuild\Current\Bin\amd64
     - name: Build blocko
       run: |
         cd blocko\vs2019-blocko

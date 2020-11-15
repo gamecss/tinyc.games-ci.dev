@@ -18,7 +18,7 @@ jobs:
     - name: Build blocko
       run: |
         cd blocko\vs2019-blocko
-        $VSPath\MSBuild.exe vs2019-blocko.sln -property:Configuration=Release -property:Platform=x64 -property:WarningLevel=0
-        $VSPath\MSBuild.exe vs2019-blocko.sln -property:Configuration=Release -property:Platform=x86 -property:WarningLevel=0
+        "$env:MSBPath\MSBuild.exe" vs2019-blocko.sln -property:Configuration=Release -property:Platform=x64 -property:WarningLevel=0
+        "$env:MSBPath\MSBuild.exe" vs2019-blocko.sln -property:Configuration=Release -property:Platform=x86 -property:WarningLevel=0
         dir x64\release
         dir x86\release

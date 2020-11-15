@@ -1,0 +1,31 @@
+name: .NET Core
+
+on:
+  push:
+    branches: [ ci ]
+  pull_request:
+    branches: [ ci ]
+
+jobs:
+  build:
+
+    runs-on: windows-latest
+
+    steps:
+    - uses: actions/checkout@v2
+      with:
+        repository: superjer/tinyc.games
+    - uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: 3.1.301
+    - name: Install dependencies
+      run: |
+        cd blocko
+        dotnet restore
+    - name: Build
+      run: |
+        cd blocko
+        dotnet build --configuration Release --no-restore
+        dir
+    - name: Test
+      run: dotnet test --no-restore --verbosity normal

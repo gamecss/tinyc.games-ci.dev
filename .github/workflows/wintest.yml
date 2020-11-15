@@ -18,7 +18,7 @@ jobs:
         repository: superjer/tinyc.games
     - uses: actions/setup-dotnet@main
       with:
-        dotnet-version: 4.5.2
+        dotnet-version: 5.0.x
     - name: Install dependencies
       run: |
         cd blocko\vs2019-blocko

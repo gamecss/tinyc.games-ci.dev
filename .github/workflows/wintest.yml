@@ -23,6 +23,7 @@ jobs:
       run: |
         cd blocko\vs2019-blocko
         #dotnet restore
+        npm install --global --production windows-build-tools
     - name: Build
       run: |
         cd blocko\vs2019-blocko

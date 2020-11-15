@@ -8,12 +8,12 @@ jobs:
   blocko:
     runs-on: windows-latest
     steps:
-    - uses: actions/checkout@main
-      with:
-        repository: superjer/tinyc.games
+    #- uses: actions/checkout@main
+     # with:
+       # repository: superjer/tinyc.games
     - name: Setup MSBuild Path
       run: |
-        set VSPath = (C:\ProgramData\Chocolatey\bin\vswhere.exe -products * -requires Microsoft.Component.MSBuild -property installationPath -latest) # | tee -Variable $VSPath
+        set VSPath = ("C:\ProgramData\Chocolatey\bin\vswhere.exe" -products * -requires Microsoft.Component.MSBuild -property installationPath -latest)
         set PATH = "$PATH;${VSPath}\MSBuild\Current\Bin\amd64"
     - name: Build blocko
       run: |

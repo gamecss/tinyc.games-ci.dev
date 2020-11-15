@@ -15,7 +15,6 @@ jobs:
     - uses: actions/checkout@main
       with:
         repository: superjer/tinyc.games
-    - uses: actions/setup-node@main
     - uses: actions/setup-dotnet@main
       with:
         dotnet-version: 3.1.301
@@ -23,12 +22,12 @@ jobs:
       run: |
         cd blocko\vs2019-blocko
         #dotnet restore
-        npm install --global --production windows-build-tools
+        #npm install --global --production windows-build-tools
     - name: Build
       run: |
         cd blocko\vs2019-blocko
-        #dotnet build --configuration Release --no-restore 
-        MSBuild vs2019-blocko.sln -property:Configuration=Release -property:Platform=x64
+        dotnet build --configuration Release --platform x64
+        #MSBuild vs2019-blocko.sln -property:Configuration=Release -property:Platform=x64
         dir
     - name: Test
       run: dotnet test --no-restore --verbosity normal

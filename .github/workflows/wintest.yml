@@ -16,18 +16,19 @@ jobs:
     - uses: actions/checkout@main
       with:
         repository: superjer/tinyc.games
-    - uses: actions/setup-dotnet@main
-      with:
-        dotnet-version: 5.0.x
+    #- uses: actions/setup-dotnet@main
+    #  with:
+   #     dotnet-version: 5.0.x
     - name: Install dependencies
       run: |
-        C:
-        dir C:\Users\runneradmin\AppData\Local\Microsoft
+        dir "C:\Program files\MSBuild"
         dir "C:\Program Files\"
-        dir "C:\Program Files (x86)\"
-        cd blocko\vs2019-blocko
-        #dotnet restore
-        #npm install --global --production windows-build-tools
+      #C:
+      #dir C:\Users\runneradmin\AppData\Local\Microsoft
+      #dir "C:\Program Files (x86)\"
+      #cd blocko\vs2019-blocko
+      #dotnet restore
+      #npm install --global --production windows-build-tools
     - name: Build
       run: |
         cd blocko\vs2019-blocko

@@ -10,14 +10,15 @@ jobs:
   build:
 
     runs-on: windows-latest
-
+    env:
+      DOTNET_NOLOGO: true
     steps:
     - uses: actions/checkout@main
       with:
         repository: superjer/tinyc.games
     - uses: actions/setup-dotnet@main
       with:
-        dotnet-version: 4.5.x
+        dotnet-version: 4.5
     - name: Install dependencies
       run: |
         cd blocko\vs2019-blocko

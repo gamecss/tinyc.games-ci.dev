@@ -13,6 +13,7 @@ jobs:
         repository: superjer/tinyc.games
     - name: Setup MSBuild Path
       run: |
+        set VSPath=
         C:\ProgramData\Chocolatey\bin\vswhere.exe -products * -requires Microsoft.Component.MSBuild -property installationPath -latest | tee -Variable $VSPath
         set PATH="$PATH;${VSPath}\MSBuild\Current\Bin\amd64"
     - name: Build blocko

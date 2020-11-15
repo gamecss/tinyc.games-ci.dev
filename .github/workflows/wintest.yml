@@ -21,6 +21,9 @@ jobs:
         dotnet-version: 5.0.x
     - name: Install dependencies
       run: |
+        C:
+        cd C:\Users\runneradmin\AppData\Local\Microsoft\dotnet\
+        dir
         cd blocko\vs2019-blocko
         #dotnet restore
         #npm install --global --production windows-build-tools

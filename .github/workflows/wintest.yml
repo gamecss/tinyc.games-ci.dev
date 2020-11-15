@@ -20,11 +20,11 @@ jobs:
         dotnet-version: 3.1.301
     - name: Install dependencies
       run: |
-        #cd blocko
-        #dotnet restore
+        cd blocko\vs2019-blocko
+        dotnet restore
     - name: Build
       run: |
-        cd blocko
+        cd blocko\vs2019-blocko
         #dotnet build --configuration Release --no-restore 
         dotnet msbuild vs2019-blocko.sln -property:Configuration=Release -property:Platform=x64
         dir

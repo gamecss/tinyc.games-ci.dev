@@ -16,7 +16,7 @@ jobs:
         repository: superjer/tinyc.games
     - name: Setup MSBuild Path
       run: |
-        for /F %%i in ('C:\ProgramData\Chocolatey\bin\vswhere.exe -products * -requires Microsoft.Component.MSBuild -property installationPath -latest') do ( set vspath=%%i)
+        cmd /c "for /F %%i in ('C:\ProgramData\Chocolatey\bin\vswhere.exe -products * -requires Microsoft.Component.MSBuild -property installationPath -latest') do ( set vspath=%%i)"
         set PATH=%PATH%;%vspath%\MSBuild\Current\Bin\amd64
     - name: Build blocko
       run: |

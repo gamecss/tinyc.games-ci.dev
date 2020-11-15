@@ -11,15 +11,16 @@ jobs:
     - uses: actions/checkout@main
       with:
         repository: superjer/tinyc.games
-    - name: Setup MSBuild Path
-      run: |
-        $VSPath=(C:\ProgramData\Chocolatey\bin\vswhere.exe -products * -requires Microsoft.Component.MSBuild -property installationPath -latest)
-        [environment]::SetEnvironmentvariable("PATH", "'$env:PATH';${VSPath}\MSBuild\Current\Bin\amd64", "Machine")
-        dir ${VSPath}\MSBuild\Current\Bin\amd64
+    - name: Setup MSBuild.exe
+      uses: warrenbuckley/Setup-MSBuild@v1
+    #- name: Setup MSBuild Path
+    #  run: |
+    #    $VSPath=(C:\ProgramData\Chocolatey\bin\vswhere.exe -products * -requires Microsoft.Component.MSBuild -property installationPath -latest)
+    #    [environment]::SetEnvironmentvariable("PATH", "'$env:PATH';${VSPath}\MSBuild\Current\Bin\amd64", "Machine")
+    #    dir ${VSPath}\MSBuild\Current\Bin\amd64
     - name: Build blocko
+      working-directory: blocko\vs2019-blocko
       run: |
-        echo $env:PATH
-        cd blocko\vs2019-blocko
         MSBuild vs2019-blocko.sln -property:Configuration=Release -property:Platform=x64 -property:WarningLevel=0
         MSBuild vs2019-blocko.sln -property:Configuration=Release -property:Platform=x86 -property:WarningLevel=0
         dir x64\release

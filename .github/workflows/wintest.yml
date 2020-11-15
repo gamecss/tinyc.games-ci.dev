@@ -1,14 +1,11 @@
 name: Windows test
-
 on:
   push:
     branches: [ ci ]
   pull_request:
     branches: [ ci ]
-
 jobs:
-  build:
-
+  blocko:
     runs-on: windows-latest
     steps:
     - uses: actions/checkout@main
@@ -16,8 +13,8 @@ jobs:
         repository: superjer/tinyc.games
     - name: Setup MSBuild Path
       run: |
-        cmd /c "for /F %%i in ('C:\ProgramData\Chocolatey\bin\vswhere.exe -products * -requires Microsoft.Component.MSBuild -property installationPath -latest') do ( set vspath=%%i)"
-        set PATH=%PATH%;%vspath%\MSBuild\Current\Bin\amd64
+        C:\ProgramData\Chocolatey\bin\vswhere.exe -products * -requires Microsoft.Component.MSBuild -property installationPath -latest | tee -Variable $VSPath
+        set PATH=$PATH;$VSPath\MSBuild\Current\Bin\amd64
     - name: Build blocko
       run: |
         cd blocko\vs2019-blocko

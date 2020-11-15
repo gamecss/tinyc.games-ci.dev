@@ -15,9 +15,13 @@ jobs:
     - uses: actions/checkout@main
       with:
         repository: superjer/tinyc.games
-    - uses: actions/setup-dotnet@main
-      with:
-        dotnet-version: 3.1.301
+    - name: setup dotnet
+      run: |
+        C:\windows\System32\WindowsPowerShell\v1.0\powershell.exe -NoLogo -Sta -NoProfile -NonInteractive -ExecutionPolicy Unrestricted -Command "& $client = new-object System.Net.WebClient & $client.DownloadFile('https://github.com/actions/setup-dotnet/raw/main/externals/install-dotnet.ps1', 'D:/install-dotnet.ps1'))"
+        C:\windows\System32\WindowsPowerShell\v1.0\powershell.exe -NoLogo -Sta -NoProfile -NonInteractive -ExecutionPolicy Unrestricted -Command "& 'D:\install-dotnet.ps1' -Version 4.5"
+   #- uses: actions/setup-dotnet@main
+      #with:
+        #dotnet-version: 3.1.301
     - name: Install dependencies
       run: |
         cd blocko\vs2019-blocko

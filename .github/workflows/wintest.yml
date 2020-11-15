@@ -26,8 +26,8 @@ jobs:
     - name: Build
       run: |
         cd blocko\vs2019-blocko
-        dotnet build --configuration Release --platform x64 --no-restore --nologo
-        #MSBuild vs2019-blocko.sln -property:Configuration=Release -property:Platform=x64
+        dotnet build --configuration Release --no-restore --nologo
+        #MSBuild vs2019-blocko.sln -property:Conf
         dir
     - name: Test
       run: dotnet test --no-restore --verbosity normal

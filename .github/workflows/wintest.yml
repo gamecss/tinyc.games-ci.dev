@@ -18,6 +18,7 @@ jobs:
         dir ${VSPath}\MSBuild\Current\Bin\amd64
     - name: Build blocko
       run: |
+        echo $env:PATH
         cd blocko\vs2019-blocko
         MSBuild vs2019-blocko.sln -property:Configuration=Release -property:Platform=x64 -property:WarningLevel=0
         MSBuild vs2019-blocko.sln -property:Configuration=Release -property:Platform=x86 -property:WarningLevel=0

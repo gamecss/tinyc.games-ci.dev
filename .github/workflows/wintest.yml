@@ -21,8 +21,8 @@ jobs:
     - name: Build blocko
       working-directory: blocko\vs2019-blocko
       run: |
-        dir C:\"Program Files (x86)"\"Microsoft Visual Studio"\2019\Enterprise\MSBuild\Current\Bin
-        C:\"Program Files (x86)"\"Microsoft Visual Studio"\2019\Enterprise\MSBuild\Current\Bin\amd64\MSBuild.exe vs2019-blocko.sln -property:Configuration=Release -property:Platform="Any CPU" -property:WarningLevel=0
+        #dir C:\"Program Files (x86)"\"Microsoft Visual Studio"\2019\Enterprise\MSBuild\Current\Bin
+        C:\"Program Files (x86)"\"Microsoft Visual Studio"\2019\Enterprise\MSBuild\Current\Bin\amd64\MSBuild.exe vs2019-blocko.sln -property:Configuration=Debug -property:Platform="Any CPU" -property:WarningLevel=0
         #C:\"Program Files (x86)"\"Microsoft Visual Studio"\2019\Enterprise\MSBuild\Current\Bin\MSBuild.exe vs2019-blocko.sln -property:Configuration=Release -property:Platform=x86 -property:WarningLevel=0
         dir x64\release
         dir x86\release

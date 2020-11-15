@@ -13,12 +13,12 @@ jobs:
         repository: superjer/tinyc.games
     - name: Setup MSBuild Path
       run: |
-        $VSPath=(C:\ProgramData\Chocolatey\bin\vswhere.exe -products * -requires Microsoft.Component.MSBuild -property installationPath -latest)
-        $env:PATH="$env:PATH";"${VSPath}\MSBuild\Current\Bin\amd64"
+        $env:VSPath=(C:\ProgramData\Chocolatey\bin\vswhere.exe -products * -requires Microsoft.Component.MSBuild -property installationPath -latest)
+        $env:MSBPath="${VSPath}\MSBuild\Current\Bin\amd64"
     - name: Build blocko
       run: |
         cd blocko\vs2019-blocko
-        MSBuild vs2019-blocko.sln -property:Configuration=Release -property:Platform=x64 -property:WarningLevel=0
-        MSBuild vs2019-blocko.sln -property:Configuration=Release -property:Platform=x86 -property:WarningLevel=0
+        $VSPath\MSBuild.exe vs2019-blocko.sln -property:Configuration=Release -property:Platform=x64 -property:WarningLevel=0
+        $VSPath\MSBuild.exe vs2019-blocko.sln -property:Configuration=Release -property:Platform=x86 -property:WarningLevel=0
         dir x64\release
         dir x86\release

@@ -16,6 +16,7 @@ jobs:
       run: |
         #C:\"Program Files (x86)"\"Microsoft Visual Studio"\2019\Enterprise\MSBuild\Current\Bin\amd64\MSBuild.exe vs2019-blocko.sln -property:Configuration=Release -property:Platform=x64 -property:WarningLevel=0
         dir C:\"Program Files (x86)"\"Microsoft Visual Studio"\2019\Enterprise\common7\ide\CommonExtensions\Platform
+        dir C:\"Program Files (x86)"\"Microsoft Visual Studio"\2019\Enterprise\common7\ide\CommonExtensions\Microsoft
         false
     - uses: actions/upload-artifact@main
       with:

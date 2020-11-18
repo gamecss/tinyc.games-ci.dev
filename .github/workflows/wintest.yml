@@ -14,7 +14,9 @@ jobs:
     - name: Build blocko
       working-directory: blocko\vs2019-blocko
       run: |
-        C:\"Program Files (x86)"\"Microsoft Visual Studio"\2019\Enterprise\MSBuild\Current\Bin\amd64\MSBuild.exe vs2019-blocko.sln -property:Configuration=Release -property:Platform=x64 -property:WarningLevel=0
+        #C:\"Program Files (x86)"\"Microsoft Visual Studio"\2019\Enterprise\MSBuild\Current\Bin\amd64\MSBuild.exe vs2019-blocko.sln -property:Configuration=Release -property:Platform=x64 -property:WarningLevel=0
+        dir C:\"Program Files (x86)"\"Microsoft Visual Studio"\2019\Enterprise\common7\ide\CommonExtensions\
+        false
     - uses: actions/upload-artifact@main
       with:
         name: vs2019-blocko.exe

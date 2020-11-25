@@ -19,16 +19,17 @@ jobs:
       with:
         name: vs2019-blocko.exe
         path: blocko\vs2019-blocko\x64\release\vs2019-blocko.exe
-  flappy:
+  flappy&tet:
     runs-on: windows-latest
     steps:
       - uses: actions/checkout@main
         with:
           repository: superjer/tinyc.games
       - name: Build flappy & tet
-        working-directory: flappy
         run: |
+          cd flappy
           ..\_win\tcc-x64\tcc.exe -DSDL_MAIN_HANDLED -I..\_win\SDL2-2.0.5\include -I..\_win\SDL2_ttf-2.0.14\include -L..\_win\SDL2-2.0.5\lib\x64 -L..\_win\SDL2_ttf-2.0.14\lib\x64 -lSDL2 -lSDL2_ttf flappy.c
+          cd ../tet
           ..\_win\tcc-x64\tcc.exe -DSDL_MAIN_HANDLED -I..\_win\SDL2-2.0.5\include -I..\_win\SDL2_ttf-2.0.14\include -L..\_win\SDL2-2.0.5\lib\x64 -L..\_win\SDL2_ttf-2.0.14\lib\x64 -lSDL2 -lSDL2_ttf tet.c
       - name: Upload flappy
         uses: actions/upload-artifact@main

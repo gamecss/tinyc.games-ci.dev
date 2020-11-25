@@ -17,8 +17,8 @@ jobs:
         C:\"Program Files (x86)"\"Microsoft Visual Studio"\2019\Enterprise\MSBuild\Current\Bin\amd64\MSBuild.exe vs2019-blocko.sln -property:Configuration=Release -property:Platform=x64 -property:WarningLevel=0
     - uses: actions/upload-artifact@main
       with:
-        name: vs2019-blocko.exe
-        path: blocko\vs2019-blocko\x64\release\vs2019-blocko.exe
+        name: vs2019-blocko-x64-release
+        path: blocko\vs2019-blocko\x64\release
   flappy&tet:
     runs-on: windows-latest
     steps:

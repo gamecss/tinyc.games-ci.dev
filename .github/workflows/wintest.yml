@@ -19,7 +19,7 @@ jobs:
       with:
         name: vs2019-blocko-x64-release
         path: blocko\vs2019-blocko\x64\release
-  flappy&tet:
+  flappyandtet:
     runs-on: windows-latest
     steps:
       - uses: actions/checkout@main

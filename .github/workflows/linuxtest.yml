@@ -1,4 +1,4 @@
-name: linux
+name:  Linux test
 
 on:
   push:
@@ -9,7 +9,7 @@ on:
 jobs:
   build:
 
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-18.04
 
     steps:
     - uses: actions/checkout@v2
@@ -23,13 +23,14 @@ jobs:
       run: |
         cd blocko
         gcc -fopenmp -O3 -Wall -Wextra -Wno-unused-parameter -I/usr/include/GL/ -I/usr/include/SDL2 -o blocko main.c -lm -lGLEW -lSDL2 -lGL
+        ls
     - name: build flappy&tet
       run: |
         cd flappy
-        tcc -I /usr/include/SDL2 -lSDL2 -lSDL2_ttf flappy.c
+        tcc -I /usr/include/SDL2 -lSDL2 -lSDL2_ttf -o flappy flappy.c
         ls
         cd ../tet
-        tcc -I /usr/include/SDL2 -lSDL2 -lSDL2_ttf tet.c
+        tcc -I /usr/include/SDL2 -lSDL2 -lSDL2_ttf -o tet tet.c
         ls
     - uses: actions/upload-artifact@v2
       with:

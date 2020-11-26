@@ -12,16 +12,16 @@ jobs:
       with:
         repository: superjer/tinyc.games
     - name: Build blocko
-      working-directory: blocko\vs2019-blocko
       run: |
-        C:\"Program Files (x86)"\"Microsoft Visual Studio"\2019\Enterprise\MSBuild\Current\Bin\amd64\MSBuild.exe vs2019-blocko.sln -property:Configuration=Release -property:Platform=x64 -property:WarningLevel=0
-        mkdir artifact
-        copy vs2019-blocko\x64\release\vs2019-blocko.exe artifact\
-        copy ..\..\_win\SDL2-2.0.5\lib\x64\SDL2.dll artifact\
+        C:\"Program Files (x86)"\"Microsoft Visual Studio"\2019\Enterprise\MSBuild\Current\Bin\amd64\MSBuild.exe blocko\vs2019-blocko\vs2019-blocko.sln -property:Configuration=Release -property:Platform=x64 -property:WarningLevel=0
+        mkdir blocko
+        copy vs2019-blocko\x64\release\vs2019-blocko.exe blocko\
+        copy _win\SDL2-2.0.5\lib\x64\SDL2.dll blocko\
+        copy _win\glew-2.1.0\bin\Release\x64\glew32.dll blocko\
     - uses: actions/upload-artifact@main
       with:
-        name: vs2019-blocko-x64
-        path: blocko\vs2019-blocko\x64\release
+        name: blocko-x64
+        path: blocko\
   flappyandtet:
     runs-on: windows-latest
     steps:

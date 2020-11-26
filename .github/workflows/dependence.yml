@@ -1,4 +1,4 @@
-name: C/C++ CI
+name: dependence
 
 on:
   push:
@@ -12,7 +12,7 @@ jobs:
     steps:
     - uses: actions/checkout@main
       with:
-        reposisory: SDL-mirror/SDL
+        repository: SDL-mirror/SDL
     - run: |
         mkdir files
         ./configure --prefix=$(pwd)/files

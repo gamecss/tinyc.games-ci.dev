@@ -1,0 +1,26 @@
+name: C/C++ CI
+
+on:
+  push:
+    branches: [ ci ]
+  pull_request:
+    branches: [ ci ]
+
+jobs:
+  sdl:
+    runs-on: ubuntu-18.04
+    steps:
+    - uses: actions/checkout@main
+      with:
+        reposisory: SDL-mirror/SDL
+    - run: |
+        mkdir files
+        ./configure --prefix=$(pwd)/files
+    - run: |
+        make
+        make install
+        ls files/
+    - uses: actions/upload-artifact@v2
+      with:
+        name: sdl.zip
+        path: files/

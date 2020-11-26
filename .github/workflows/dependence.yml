@@ -7,20 +7,23 @@ on:
     branches: [ ci ]
 
 jobs:
-  sdl:
+  linux:
     runs-on: ubuntu-18.04
     steps:
+    
+    - uses: actions/checkout@main
+      with:
+        ref: dependence
+        path: files
     - uses: actions/checkout@main
       with:
         repository: SDL-mirror/SDL
-    - run: |
-        mkdir files
-        ./configure --prefix=$(pwd)/files
-    - run: |
-        make
-        make install
-        ls files/
-    - uses: actions/upload-artifact@v2
-      with:
-        name: sdl.zip
-        path: files/
+        path: sdl
+    - name: sdl
+      working-directory: sdl
+      run: |
+        mkdir ../files/sdl
+        ./configure --prefix=../files/sdl
+        make -j$(cat /proc/cpuinfo |grep "processor"|sort -u|wc -l)
+        make -j$(cat /proc/cpuinfo |grep "processor"|sort -u|wc -l) install
+        ls ../files/sdl/

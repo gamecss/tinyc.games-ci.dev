@@ -1,0 +1,40 @@
+name: dependence
+
+on:
+  push:
+    branches: [ ci ]
+  pull_request:
+    branches: [ ci ]
+
+jobs:
+  linux:
+    runs-on: windows-2019
+    steps:
+    
+    - uses: actions/checkout@main
+      with:
+        ref: dependence
+    - name: prepare build
+      run: |
+        git clone https://github.com/nigels-com/glew.git glew-src
+        mkdir glew
+    - uses: msys2/setup-msys2@v2
+      with:
+        update: true
+        install: >-
+          gcc
+          make
+          mingw-w64-i686-gcc 
+          mingw-w64-x86_64-gcc
+    - shell: msys2 {0}
+      run: |
+        cd D:\a\tinyc.games-ci\tinyc.games-ci\glew-src
+        make
+        make install
+        make install.all
+    - name: push
+      run: |
+        ls glew/
+        git add .
+        git commit -m "auto upgrade glew"
+        git push origin dependence

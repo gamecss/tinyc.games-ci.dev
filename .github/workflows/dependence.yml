@@ -24,14 +24,9 @@ jobs:
         mkdir sdl-ttf
         mkdir glew
     - name: glew
-      working-directory: glew-src/build/vc15
+      working-directory: glew-src/build/vc14
       run: |
-        #cd VisualC
-        #dir C:\"Program Files (x86)"\MSBuild\Microsoft.Cpp\
-        #dir C:\"Program Files (x86)"\MSBuild\Microsoft.Cpp\v4.0\
-        #dir C:\"Program Files"\MSBuild\Microsoft.Cpp\v4.0\Platforms
-        #dir C:\"Program Files (x86)"\"Microsoft Visual Studio"\2017\Enterprise\VC
-        C:\"Program Files (x86)"\"Microsoft Visual Studio"\2017\Enterprise\Common7\IDE\devenv.com glew.sln /build "Release|Win64" /Project glew_shared
+        C:\"Program Files (x86)"\"Microsoft Visual Studio"\2017\Enterprise\Common7\IDE\devenv.com glew.sln /build "Release|Win64" /Project glewinfo
     #- name: sdl-ttf
    #   working-directory: sdl-ttf-src
    #   run: |

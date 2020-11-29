@@ -14,7 +14,6 @@ jobs:
     - uses: actions/checkout@main
       with:
         ref: dependence
-        path: files
     - name: prepare build
       run: |
         git clone https://github.com/SDL-mirror/SDL.git sdl-src

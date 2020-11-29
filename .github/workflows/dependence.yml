@@ -24,8 +24,9 @@ jobs:
         mkdir sdl-ttf
         mkdir glew
     - name: sdl
-      working-directory: sdl-src
       run: |
+        ls
+        cd sdl-src
         ./configure --prefix=../sdl
         make -j$(cat /proc/cpuinfo |grep "processor"|sort -u|wc -l)
         make -j$(cat /proc/cpuinfo |grep "processor"|sort -u|wc -l) install

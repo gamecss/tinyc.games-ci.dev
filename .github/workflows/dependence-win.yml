@@ -26,12 +26,14 @@ jobs:
           make
           mingw-w64-i686-gcc
           mingw-w64-x86_64-gcc
+          cmake
     - shell: msys2 {0}
-      working-directory: D:\a\tinyc.games-ci\tinyc.games-ci\glew-src
+      working-directory: D:\a\tinyc.games-ci\tinyc.games-ci\glew-src\build
       run: |
+        cmake ./cmake
         make
-        make install
-        make install.all
+      #   make install
+      #  make install.all
     - name: push
       run: |
         ls glew/

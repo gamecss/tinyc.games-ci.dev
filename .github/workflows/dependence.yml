@@ -24,10 +24,10 @@ jobs:
         mkdir sdl-ttf
         mkdir glew
     - name: sdl
-      working-directory: sdl
+      working-directory: sdl\VisualC
       run: |
-        dir C:\"Program Files (x86)"\ #Microsoft Visual Studio 10.0\VC\Bin
-        dir C:\"Program Files"\
+        C:\"Program Files (x86)"\"Microsoft Visual Studio 10.0"\VC\Bin\vcvarsall.bat
+        devenv SDL.sln /Build "Release"
     #- name: sdl-ttf
    #   working-directory: sdl-ttf-src
    #   run: |

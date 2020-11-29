@@ -26,6 +26,7 @@ jobs:
     - name: sdl
       working-directory: sdl
       run: |
+        ls
         cd VisualC
         dir C:\"Program Files (x86)"\"Microsoft Visual Studio 10.0"\
         C:\"Program Files (x86)"\"Microsoft Visual Studio 10.0"\VC\Bin\vcvarsall.bat

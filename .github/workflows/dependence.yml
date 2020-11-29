@@ -8,7 +8,7 @@ on:
 
 jobs:
   linux:
-    runs-on: ubuntu-18.04
+    runs-on: windows-latest
     steps:
     
     - uses: actions/checkout@main
@@ -17,7 +17,6 @@ jobs:
         path: files
     - name: prepare build
       run: |
-        sudo apt-get install -y build-essential libxmu-dev libxi-dev libgl-dev cmake git automake
         git clone https://github.com/SDL-mirror/SDL.git sdl-src
         git clone https://github.com/SDL-mirror/SDL_ttf.git sdl-ttf-src
         git clone https://github.com/nigels-com/glew.git glew-src
@@ -25,26 +24,16 @@ jobs:
         mkdir sdl-ttf
         mkdir glew
     - name: sdl
+      working-directory: sdl
       run: |
-        cd sdl-src
-        ./configure --prefix=$(dirname $(pwd))/sdl
-        make -j$(cat /proc/cpuinfo |grep "processor"|sort -u|wc -l)
-        make -j$(cat /proc/cpuinfo |grep "processor"|sort -u|wc -l) install
-        export PATH=$PATH:$(dirname $(pwd))/sdl/bin
-    - name: sdl-ttf
-      working-directory: sdl-ttf-src
-      run: |
-        ./configure --prefix=$(dirname $(pwd))/sdl-ttf
-        make -j$(cat /proc/cpuinfo |grep "processor"|sort -u|wc -l)
-        make -j$(cat /proc/cpuinfo |grep "processor"|sort -u|wc -l) install
-    - name: glew
-      working-directory: glew-src/build
-      run: |
-        cmake ./cmake -DCMAKE_INSTALL_PREFIX=$(dirname $(dirname$(pwd)))/glew -DBUILD_UTILS=ON
-        make -j$(cat /proc/cpuinfo |grep "processor"|sort -u|wc -l) glew
-        make -j$(cat /proc/cpuinfo |grep "processor"|sort -u|wc -l) glewinfo
-        make -j$(cat /proc/cpuinfo |grep "processor"|sort -u|wc -l) visualinfo
-        make -j$(cat /proc/cpuinfo |grep "processor"|sort -u|wc -l) install
+        dir C:\"Program Files (x86)"\ #Microsoft Visual Studio 10.0\VC\Bin
+        dir C:\"Program Files"\
+    #- name: sdl-ttf
+   #   working-directory: sdl-ttf-src
+   #   run: |
+  #  - name: glew
+    #  working-directory: glew-src/build
+   #   run: |
     - name: push
       run: |
         ls glew/

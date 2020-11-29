@@ -25,7 +25,10 @@ jobs:
         mkdir glew
     - name: sdl
       working-directory: sdl\VisualC
+      env:
+        shell: C:\Windows\System32\cmd.exe
       run: |
+        dir C:\"Program Files (x86)"\"Microsoft Visual Studio 10.0"\
         C:\"Program Files (x86)"\"Microsoft Visual Studio 10.0"\VC\Bin\vcvarsall.bat
         devenv SDL.sln /Build "Release"
     #- name: sdl-ttf

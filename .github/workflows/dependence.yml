@@ -25,22 +25,21 @@ jobs:
         mkdir glew
     - name: sdl
       run: |
-        ls
         cd sdl-src
-        ./configure --prefix=../sdl
+        ./configure --prefix=$(dirname $(pwd))/sdl
         make -j$(cat /proc/cpuinfo |grep "processor"|sort -u|wc -l)
         make -j$(cat /proc/cpuinfo |grep "processor"|sort -u|wc -l) install
     - name: sdl-ttf
       working-directory: sdl-ttf-src
       run: |
-        ./configure --prefix=../sdl
+        ./configure --prefix=$(dirname $(pwd))/sdl
         make -j$(cat /proc/cpuinfo |grep "processor"|sort -u|wc -l)
         make -j$(cat /proc/cpuinfo |grep "processor"|sort -u|wc -l) install
     - name: glew
       working-directory: glew-src/build
       run: |
         sudo apt-get install build-essential libxmu-dev libxi-dev libgl-dev cmake
-        cmake ./cmake -DCMAKE_INSTALL_PREFIX=../../glew -DBUILD_UTILS=ON
+        cmake ./cmake -DCMAKE_INSTALL_PREFIX=$(dirname $(dirname$(pwd)))/glew -DBUILD_UTILS=ON
         make -j$(cat /proc/cpuinfo |grep "processor"|sort -u|wc -l) glew
         make -j$(cat /proc/cpuinfo |grep "processor"|sort -u|wc -l) glewinfo
         make -j$(cat /proc/cpuinfo |grep "processor"|sort -u|wc -l) visualinfo

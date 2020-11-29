@@ -27,9 +27,10 @@ jobs:
       working-directory: sdl-src\VisualC
       run: |
         #cd VisualC
-        dir C:\"Program Files (x86)"\"Microsoft Visual Studio 10.0"\Common7\IDE
-        C:\"Program Files (x86)"\"Microsoft Visual Studio 10.0"\Common7\IDE\VC\Bin\vcvarsall.bat
-        devenv SDL.sln /build "Release|Win64" /Project SDL
+        dir C:\"Program Files (x86)"\
+        dir C:\"Program Files"\
+        dir C:\"Program Files (x86)"\"Microsoft Visual Studio 2017"\Common7\IDE
+        C:\"Program Files (x86)"\"Microsoft Visual Studio 2017"\Common7\IDE\devenv.com SDL.sln /build "Release|Win64" /Project SDL
     #- name: sdl-ttf
    #   working-directory: sdl-ttf-src
    #   run: |

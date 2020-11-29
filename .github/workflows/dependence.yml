@@ -17,6 +17,7 @@ jobs:
         path: files
     - name: prepare build
       run: |
+        sudo apt-get install build-essential libxmu-dev libxi-dev libgl-dev cmake git automake
         git clone https://github.com/SDL-mirror/SDL.git sdl-src
         git clone https://github.com/SDL-mirror/SDL_ttf.git sdl-ttf-src
         git clone https://github.com/nigels-com/glew.git glew-src
@@ -32,13 +33,12 @@ jobs:
     - name: sdl-ttf
       working-directory: sdl-ttf-src
       run: |
-        ./configure --prefix=$(dirname $(pwd))/sdl
+        ./configure --prefix=$(dirname $(pwd))/sdl-ttf
         make -j$(cat /proc/cpuinfo |grep "processor"|sort -u|wc -l)
         make -j$(cat /proc/cpuinfo |grep "processor"|sort -u|wc -l) install
     - name: glew
       working-directory: glew-src/build
       run: |
-        sudo apt-get install build-essential libxmu-dev libxi-dev libgl-dev cmake
         cmake ./cmake -DCMAKE_INSTALL_PREFIX=$(dirname $(dirname$(pwd)))/glew -DBUILD_UTILS=ON
         make -j$(cat /proc/cpuinfo |grep "processor"|sort -u|wc -l) glew
         make -j$(cat /proc/cpuinfo |grep "processor"|sort -u|wc -l) glewinfo

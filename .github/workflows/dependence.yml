@@ -17,7 +17,7 @@ jobs:
         path: files
     - name: prepare build
       run: |
-        sudo apt-get install build-essential libxmu-dev libxi-dev libgl-dev cmake git automake
+        sudo apt-get install -y build-essential libxmu-dev libxi-dev libgl-dev cmake git automake
         git clone https://github.com/SDL-mirror/SDL.git sdl-src
         git clone https://github.com/SDL-mirror/SDL_ttf.git sdl-ttf-src
         git clone https://github.com/nigels-com/glew.git glew-src
@@ -30,6 +30,7 @@ jobs:
         ./configure --prefix=$(dirname $(pwd))/sdl
         make -j$(cat /proc/cpuinfo |grep "processor"|sort -u|wc -l)
         make -j$(cat /proc/cpuinfo |grep "processor"|sort -u|wc -l) install
+        export PATH=$PATH:$(dirname $(pwd))/sdl/bin
     - name: sdl-ttf
       working-directory: sdl-ttf-src
       run: |

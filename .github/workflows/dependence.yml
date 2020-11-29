@@ -26,7 +26,12 @@ jobs:
     - name: glew
     #  working-directory: glew-src/build/vc14
       run: |
-        dir C:\msys64
+        dir
+        C:\msys64\msys2.exe
+        pacman -S gcc make mingw-w64-i686-gcc mingw-w64-x86_64-gcc
+        make
+        make install
+        make install.all
        # #C:\"Program Files (x86)"\"Microsoft Visual Studio"\2017\Enterprise\Common7\IDE\devenv.com glew.sln /build "Release|Win64" /Project glewinfo
      #   C:\"Program Files (x86)"\"Microsoft Visual Studio"\2017\Enterprise\MSBuild\Current\Bin\amd64\MSBuild.exe glew.sln -property:Configuration=Debug
    #- name: sdl-ttf

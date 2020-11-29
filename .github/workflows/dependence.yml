@@ -27,10 +27,10 @@ jobs:
       working-directory: sdl-src\VisualC
       run: |
         #cd VisualC
-        dir C:\"Program Files (x86)"\MSBuild
-        dir C:\"Program Files"\MSBuild
-        dir C:\"Program Files (x86)"\"Microsoft Visual Studio"\2017\Enterprise
-        C:\"Program Files (x86)"\"Microsoft Visual Studio"\2017\Enterprise\Common7\IDE\devenv.com SDL.sln /build "Release|Win64" /Project SDL
+        dir C:\"Program Files (x86)"\MSBuild\Microsoft.Cpp\v4.0\Platforms
+        #dir C:\"Program Files"\MSBuild\Microsoft.Cpp\v4.0\Platforms
+        dir C:\"Program Files (x86)"\"Microsoft Visual Studio"\2017\Enterprise\VC
+        C:\"Program Files (x86)"\"Microsoft Visual Studio"\2017\Enterprise\Common7\IDE\devenv.com ./SDL.sln /build "Release|Win64" /Project SDL
     #- name: sdl-ttf
    #   working-directory: sdl-ttf-src
    #   run: |

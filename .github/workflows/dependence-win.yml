@@ -18,22 +18,12 @@ jobs:
       run: |
         git clone https://github.com/nigels-com/glew.git glew-src
         mkdir glew
-    - uses: msys2/setup-msys2@v2
-      with:
-        update: true
-        install: >-
-          gcc
-          make
-          mingw-w64-i686-gcc
-          mingw-w64-x86_64-gcc
-          cmake
-    - shell: msys2 {0}
+    - name: build glew
       working-directory: D:\a\tinyc.games-ci\tinyc.games-ci\glew-src\build
       run: |
-        cmake ./cmake
-        make
-      #   make install
-      #  make install.all
+        cmake ./cmake -G "Visual Studio 16 2019"
+        C:\"Program Files (x86)"\"Microsoft Visual Studio"\2019\Enterprise\Common7\IDE\devenv.com glew.sln /Build "Release|Win32" /Project glew
+        ls
     - name: push
       run: |
         ls glew/

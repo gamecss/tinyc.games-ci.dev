@@ -18,10 +18,14 @@ jobs:
       run: |
         git clone https://github.com/nigels-com/glew.git glew-src
         mkdir glew
-    - name: build glew
-      working-directory: D:\a\tinyc.games-ci\tinyc.games-ci\glew-src\build
+        mkdir glew-src\build\vc16
+    - name: gen sln
+      working-directory: D:\a\tinyc.games-ci\tinyc.games-ci\glew-src\build\vc16
       run: |
-        cmake ./cmake -G "Visual Studio 16 2019"
+        cmake ../cmake -G "Visual Studio 16 2019"
+    - name: build dll
+      working-directory: D:\a\tinyc.games-ci\tinyc.games-ci\glew-src\build\vc16
+      run: |
         C:\"Program Files (x86)"\"Microsoft Visual Studio"\2019\Enterprise\Common7\IDE\devenv.com glew.sln /Build "Release|Win32" /Project glew
         ls
     - name: push

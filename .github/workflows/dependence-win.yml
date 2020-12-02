@@ -16,9 +16,11 @@ jobs:
         ref: dependence
     - name: prepare build
       run: |
-        git clone https://github.com/nigels-com/glew.git glew-src
+        choco install 7zip.install
+        certutil.exe -urlcache -split -f https://sourceforge.net/projects/glew/files/latest/download glew.tgz
+        7za x glew.tgz -o glew-src
+      # git clone https://github.com/nigels-com/glew.git glew-src
         mkdir glew
-        mkdir glew-src\build\vc16
     - name: gen sln
       working-directory: D:\a\tinyc.games-ci\tinyc.games-ci\glew-src\build\vc16
       run: |

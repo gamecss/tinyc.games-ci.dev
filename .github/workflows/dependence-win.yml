@@ -8,13 +8,13 @@ on:
 
 jobs:
   linux:
-    runs-on: windows-2019
+    runs-on: windows-2016
     steps:
     
     - uses: actions/checkout@main
       with:
         ref: dependence
-    - name: prepare build
+    - name: get source
       run: |
         certutil -urlcache -split -f https://sourceforge.net/projects/glew/files/latest/download glew.tgz
         C:\"Program files"\7-Zip\7z.exe x glew.tgz -oglew
@@ -22,18 +22,13 @@ jobs:
         C:\"Program files"\7-Zip\7z.exe x glew.tar -oglew
         mv glew\* .
         mv glew-* glew-src
-        ls glew-src/
-        ls glew-src/build
-        # git clone https://github.com/nigels-com/glew.git glew-src
-    - name: gen sln
-      working-directory: D:\a\tinyc.games-ci\tinyc.games-ci\glew-src\build\vc16
+    - name: build
+      working-directory: D:\a\tinyc.games-ci\tinyc.games-ci\glew-src\build\vc15
       run: |
-        cmake ../cmake -G "Visual Studio 16 2019"
-    - name: build dll
-      working-directory: D:\a\tinyc.games-ci\tinyc.games-ci\glew-src\build\vc16
-      run: |
-        C:\"Program Files (x86)"\"Microsoft Visual Studio"\2019\Enterprise\Common7\IDE\devenv.com glew.sln /Build "Release|Win32" /Project glew
+        C:\"Program Files (x86)"\"Microsoft Visual Studio"\2017\Enterprise\Common7\IDE\devenv.com glew.sln /Build "Release|Win64" /Project glew
         ls
+        ls x64/
+        ls x64/release
     - name: push
       run: |
         ls glew/

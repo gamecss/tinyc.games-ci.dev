@@ -16,9 +16,8 @@ jobs:
         ref: dependence
     - name: prepare build
       run: |
-        dir C:\"Program files"\7-Zip\
-        bitsadmin /transfer n https://sourceforge.net/projects/glew/files/latest/download glew.tgz
-        7za x glew.tgz -o glew-src
+        bitsadmin /transfer dlglew /download /priority normal "https://sourceforge.net/projects/glew/files/latest/download" "glew.tgz"
+        C:\"Program files"\7-Zip\7z.exe x glew.tgz -o glew-src
         ls glew-src/
         # git clone https://github.com/nigels-com/glew.git glew-src
         mkdir glew

@@ -19,7 +19,7 @@ jobs:
         choco install 7zip.install
         certutil.exe -urlcache -split -f https://sourceforge.net/projects/glew/files/latest/download glew.tgz
         7za x glew.tgz -o glew-src
-      # git clone https://github.com/nigels-com/glew.git glew-src
+        # git clone https://github.com/nigels-com/glew.git glew-src
         mkdir glew
     - name: gen sln
       working-directory: D:\a\tinyc.games-ci\tinyc.games-ci\glew-src\build\vc16

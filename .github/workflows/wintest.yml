@@ -14,14 +14,14 @@ jobs:
     - name: Build blocko
       run: |
         C:\"Program Files (x86)"\"Microsoft Visual Studio"\2019\Enterprise\MSBuild\Current\Bin\amd64\MSBuild.exe blocko\vs2019-blocko\vs2019-blocko.sln -property:Configuration=Release -property:Platform=x64 -property:WarningLevel=0
-        mkdir blocko
-        copy vs2019-blocko\x64\release\vs2019-blocko.exe blocko\
-        copy _win\SDL2-2.0.5\lib\x64\SDL2.dll blocko\
-        copy _win\glew-2.1.0\bin\Release\x64\glew32.dll blocko\
+      #  mkdir blocko
+     #   copy vs2019-blocko\x64\release\vs2019-blocko.exe blocko\
+   #     copy _win\SDL2-2.0.5\lib\x64\SDL2.dll blocko\
+    #    copy _win\glew-2.1.0\bin\Release\x64\glew32.dll blocko\
     - uses: actions/upload-artifact@main
       with:
-        name: blocko-x64
-        path: blocko\
+        name: blocko-x64.exe
+        path: blocko\vs2019-blocko\x64\release\vs2019-blocko.exe
   flappyandtet:
     runs-on: windows-latest
     steps:

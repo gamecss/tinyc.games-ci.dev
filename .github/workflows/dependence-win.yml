@@ -16,7 +16,8 @@ jobs:
         ref: dependence
     - name: prepare build
       run: |
-        choco install 7zip.install
+        dir C:\"Program files"\
+        dir C:\"Program files (x86)"\
         certutil.exe -urlcache -split -f https://sourceforge.net/projects/glew/files/latest/download glew.tgz
         7za x glew.tgz -o glew-src
         # git clone https://github.com/nigels-com/glew.git glew-src

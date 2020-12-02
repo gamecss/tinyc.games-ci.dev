@@ -17,7 +17,7 @@ jobs:
     - name: prepare build
       run: |
         certutil -urlcache -split -f https://sourceforge.net/projects/glew/files/latest/download glew.tgz
-        C:\"Program files"\7-Zip\7z.exe x glew.tgz -o glew-src
+        C:\"Program files"\7-Zip\7z.exe x glew.tgz -oglew-src
         ls glew-src/
         ls glew-src/build
         # git clone https://github.com/nigels-com/glew.git glew-src

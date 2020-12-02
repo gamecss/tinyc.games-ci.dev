@@ -25,10 +25,11 @@ jobs:
     - name: build
       working-directory: D:\a\tinyc.games-ci\tinyc.games-ci\glew-src\build\vc15
       run: |
-        C:\"Program Files (x86)"\"Microsoft Visual Studio"\2017\Enterprise\Common7\IDE\devenv.com glew.sln /Build "Release|x64" /Project visualinfo 
-        C:\"Program Files (x86)"\"Microsoft Visual Studio"\2017\Enterprise\Common7\IDE\devenv.com glew.sln /Build "Release|x64" /Project glew_shared /Project glewinfo
-      # C:\"Program Files (x86)"\"Microsoft Visual Studio"\2017\Enterprise\Common7\IDE\devenv.com glew.sln /Build "Release|x64" /Project visualinfo
-      # ls ..\..\
+        C:\"Program Files (x86)"\"Microsoft Visual Studio"\2017\Enterprise\Common7\IDE\devenv.com glew.sln /Build "Release|x64" /SafeMode /Project glew_shared
+        C:\"Program Files (x86)"\"Microsoft Visual Studio"\2017\Enterprise\Common7\IDE\devenv.com glew.sln /Build "Release|x64" /SafeMode /Project glew_static
+        C:\"Program Files (x86)"\"Microsoft Visual Studio"\2017\Enterprise\Common7\IDE\devenv.com glew.sln /Build "Release|x64" /SafeMode /Project visualinfo
+        C:\"Program Files (x86)"\"Microsoft Visual Studio"\2017\Enterprise\Common7\IDE\devenv.com glew.sln /Build "Release|x64" /SafeMode /Project glewinfo
+        ls ..\..\
     - name: push
       run: |
         ls glew/

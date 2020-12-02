@@ -19,7 +19,6 @@ jobs:
         certutil -urlcache -split -f https://sourceforge.net/projects/glew/files/latest/download glew.tgz
         C:\"Program files"\7-Zip\7z.exe x glew.tgz -oglew
         mv glew\glew.tar .
-        rm glew\glew.tar
         C:\"Program files"\7-Zip\7z.exe x glew.tar -oglew
         mv glew\* .
         mv glew-* glew-src

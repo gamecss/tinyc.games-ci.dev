@@ -22,12 +22,21 @@ jobs:
         C:\"Program files"\7-Zip\7z.exe x glew.tar -oglew
         mv glew\* .
         mv glew-* glew-src
-    - name: build
+    - name: build x64
       working-directory: D:\a\tinyc.games-ci\tinyc.games-ci\glew-src\build\vc15
       run: |
-        C:\"Program Files (x86)"\"Microsoft Visual Studio"\2017\Enterprise\Common7\IDE\devenv.com glew.sln /Build "Release|x64" /Project glew_shared
-        C:\"Program Files (x86)"\"Microsoft Visual Studio"\2017\Enterprise\Common7\IDE\devenv.com glew.sln /Build "Release|x64" /Project visualinfo
-        C:\"Program Files (x86)"\"Microsoft Visual Studio"\2017\Enterprise\Common7\IDE\devenv.com glew.sln /Build "Release|x64" /Project glewinfo
+        call C:\"Program Files (x86)"\"Microsoft Visual Studio"\2019\Enterprise\VC\Auxiliary\Build\vcvarsall.bat amd64
+        devenv.com glew.sln /Build "Release|x64" /Project glew_shared
+        devenv.com glew.sln /Build "Release|x64" /Project visualinfo
+        devenv.com glew.sln /Build "Release|x64" /Project glewinfo
+        ls ..\..\
+    - name: build x86
+      working-directory: D:\a\tinyc.games-ci\tinyc.games-ci\glew-src\build\vc15
+      run: |
+        call C:\"Program Files (x86)"\"Microsoft Visual Studio"\2019\Enterprise\VC\Auxiliary\Build\vcvarsall.bat amd64_x86
+        devenv.com glew.sln /Build "Release|Win32" /Project glew_shared
+        devenv.com glew.sln /Build "Release|Win32" /Project visualinfo
+        devenv.com glew.sln /Build "Release|Win32" /Project glewinfo
         ls ..\..\
     - name: push
       run: |

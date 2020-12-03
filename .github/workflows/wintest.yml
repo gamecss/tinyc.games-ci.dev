@@ -14,7 +14,8 @@ jobs:
     - name: Build blocko
       shell: cmd
       run: |
-        C:\"Program Files (x86)"\"Microsoft Visual Studio"\2019\Enterprise\VC\Auxiliary\Build\vcvarsall.bat amd64 & msbuild.exe blocko\vs2019-blocko\vs2019-blocko.sln -property:Configuration=Release -property:Platform=x64 -property:WarningLevel=0
+        C:\"Program Files (x86)"\"Microsoft Visual Studio"\2019\Enterprise\VC\Auxiliary\Build\vcvarsall.bat amd64 & 
+        devenv blocko\vs2019-blocko\vs2019-blocko.sln /Build "Release|x64"
       #  mkdir blocko
      #   copy vs2019-blocko\x64\release\vs2019-blocko.exe blocko\
    #     copy _win\SDL2-2.0.5\lib\x64\SDL2.dll blocko\

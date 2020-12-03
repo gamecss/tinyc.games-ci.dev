@@ -45,7 +45,8 @@ jobs:
         cp glew-src\lib glew\
         cp glew-src\LICENSE.txt glew\
     - name: Cache glew
-      id: glew
+      env:
+        cache-name: cache-node-modules
       uses: actions/cache@v2
       with:
         path: glew

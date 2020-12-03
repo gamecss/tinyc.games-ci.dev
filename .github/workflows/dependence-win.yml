@@ -11,9 +11,6 @@ jobs:
     runs-on: windows-2016
     steps:
     
-    - uses: actions/checkout@main
-      with:
-        ref: dependence
     - name: get source
       run: |
         certutil -urlcache -split -f https://sourceforge.net/projects/glew/files/latest/download glew.tgz
@@ -27,9 +24,9 @@ jobs:
       working-directory: D:\a\tinyc.games-ci\tinyc.games-ci\glew-src\build\vc15
       run: |
         call C:\"Program Files (x86)"\"Microsoft Visual Studio"\2017\Enterprise\VC\Auxiliary\Build\vcvarsall.bat amd64
-        devenv.com glew.sln /Build "Release|x64" /Project glew_shared
-        devenv.com glew.sln /Build "Release|x64" /Project visualinfo
-        devenv.com glew.sln /Build "Release|x64" /Project glewinfo
+        devenv glew.sln /Build "Release|x64" /Project glew_shared
+        devenv glew.sln /Build "Release|x64" /Project visualinfo
+        devenv glew.sln /Build "Release|x64" /Project glewinfo
         ls ..\..\
     - name: build x86
       shell: cmd
@@ -40,9 +37,6 @@ jobs:
         devenv.com glew.sln /Build "Release|Win32" /Project visualinfo
         devenv.com glew.sln /Build "Release|Win32" /Project glewinfo
         ls ..\..\
-    - name: push
+    - name: prepare cache
       run: |
-        ls glew/
-        git add .
-        git commit -m "auto upgrade glew"
-        git push origin dependence
+        ls

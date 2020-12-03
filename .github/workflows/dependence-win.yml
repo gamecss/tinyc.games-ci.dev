@@ -23,6 +23,7 @@ jobs:
         mv glew\* .
         mv glew-* glew-src
     - name: build x64
+      shell: cmd
       working-directory: D:\a\tinyc.games-ci\tinyc.games-ci\glew-src\build\vc15
       run: |
         call C:\"Program Files (x86)"\"Microsoft Visual Studio"\2019\Enterprise\VC\Auxiliary\Build\vcvarsall.bat amd64
@@ -31,6 +32,7 @@ jobs:
         devenv.com glew.sln /Build "Release|x64" /Project glewinfo
         ls ..\..\
     - name: build x86
+      shell: cmd
       working-directory: D:\a\tinyc.games-ci\tinyc.games-ci\glew-src\build\vc15
       run: |
         call C:\"Program Files (x86)"\"Microsoft Visual Studio"\2019\Enterprise\VC\Auxiliary\Build\vcvarsall.bat amd64_x86

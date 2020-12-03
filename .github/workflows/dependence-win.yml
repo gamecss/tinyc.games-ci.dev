@@ -1,4 +1,4 @@
-name: dependence
+name: dependence-win
 
 on:
   push:
@@ -11,7 +11,7 @@ jobs:
     runs-on: windows-2016
     steps:
     
-    - name: get source
+    - name: Get glew source
       run: |
         certutil -urlcache -split -f https://sourceforge.net/projects/glew/files/latest/download glew.tgz
         C:\"Program files"\7-Zip\7z.exe x glew.tgz -oglew
@@ -19,24 +19,34 @@ jobs:
         C:\"Program files"\7-Zip\7z.exe x glew.tar -oglew
         mv glew\* .
         mv glew-* glew-src
-    - name: build x64
+    - name: Build x64 arch
       shell: cmd
-      working-directory: D:\a\tinyc.games-ci\tinyc.games-ci\glew-src\build\vc15
+      working-directory: glew-src\build\vc15
       run: |
         call C:\"Program Files (x86)"\"Microsoft Visual Studio"\2017\Enterprise\VC\Auxiliary\Build\vcvarsall.bat amd64
         devenv glew.sln /Build "Release|x64" /Project glew_shared
         devenv glew.sln /Build "Release|x64" /Project visualinfo
         devenv glew.sln /Build "Release|x64" /Project glewinfo
         ls ..\..\
-    - name: build x86
+    - name: Build x86 arch
       shell: cmd
-      working-directory: D:\a\tinyc.games-ci\tinyc.games-ci\glew-src\build\vc15
+      working-directory: glew-src\build\vc15
       run: |
         call C:\"Program Files (x86)"\"Microsoft Visual Studio"\2017\Enterprise\VC\Auxiliary\Build\vcvarsall.bat amd64_x86
-        devenv.com glew.sln /Build "Release|Win32" /Project glew_shared
-        devenv.com glew.sln /Build "Release|Win32" /Project visualinfo
-        devenv.com glew.sln /Build "Release|Win32" /Project glewinfo
+        devenv glew.sln /Build "Release|Win32" /Project glew_shared
+        devenv glew.sln /Build "Release|Win32" /Project visualinfo
+        devenv glew.sln /Build "Release|Win32" /Project glewinfo
         ls ..\..\
-    - name: prepare cache
+    - name: Prepare cache
       run: |
-        ls
+        cp glew-src\bin glew\
+        cp glew-src\doc glew\
+        cp glew-src\include glew\
+        cp glew-src\lib glew\
+        cp glew-src\LICENSE.txt glew\
+    - name: Cache glew
+      id: glew
+      uses: actions/cache@v2
+      with:
+        path: glew
+        key: win-glew

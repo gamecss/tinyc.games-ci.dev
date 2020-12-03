@@ -14,8 +14,11 @@ jobs:
     - name: Build blocko
       shell: cmd
       run: |
-        C:\"Program Files (x86)"\"Microsoft Visual Studio"\2019\Enterprise\VC\Auxiliary\Build\vcvarsall.bat amd64 & devenv blocko\vs2019-blocko\vs2019-blocko.sln /Build "Release|x64"
-      #  mkdir blocko
+        call C:\"Program Files (x86)"\"Microsoft Visual Studio"\2019\Enterprise\VC\Auxiliary\Build\vcvarsall.bat amd64
+        devenv blocko\vs2019-blocko\vs2019-blocko.sln /Build "Release|x64"
+        call C:\"Program Files (x86)"\"Microsoft Visual Studio"\2019\Enterprise\VC\Auxiliary\Build\vcvarsall.bat amd64_x86
+        devenv blocko\vs2019-blocko\vs2019-blocko.sln /Build "Release|Win32"
+     #  mkdir blocko
      #   copy vs2019-blocko\x64\release\vs2019-blocko.exe blocko\
    #     copy _win\SDL2-2.0.5\lib\x64\SDL2.dll blocko\
     #    copy _win\glew-2.1.0\bin\Release\x64\glew32.dll blocko\

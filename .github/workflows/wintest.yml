@@ -12,9 +12,11 @@ jobs:
       with:
         repository: superjer/tinyc.games
     - name: Build blocko
+      shell: cmd
       run: |
         C:\"Program Files (x86)"\"Microsoft Visual Studio"\2019\Enterprise\VC\Auxiliary\Build\vcvarsall.bat amd64
-        devenv
+        devenv.com /help
+        msbuild.exe /help
         MSBuild blocko\vs2019-blocko\vs2019-blocko.sln -property:Configuration=Release -property:Platform=x64 -property:WarningLevel=0
       #  mkdir blocko
      #   copy vs2019-blocko\x64\release\vs2019-blocko.exe blocko\

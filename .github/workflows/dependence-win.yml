@@ -50,7 +50,8 @@ jobs:
         cache-name: win-glew
       uses: actions/cache@v2
       with:
-        path: glew   
+        path: glew
+        key: win-glew
     - name: Upload glew
       uses: actions/upload-artifact@v2
       with:

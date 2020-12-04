@@ -38,12 +38,11 @@ jobs:
         devenv glew.sln /Build "Release|Win32" /Project glewinfo
         ls ..\..\
     - name: Prepare files
-      shell: cmd
       run: |
-        cp glew-src\bin glew\
-        cp glew-src\doc glew\
-        cp glew-src\include glew\
-        cp glew-src\lib glew\
+        cp -r glew-src\bin glew\
+        cp -r glew-src\doc glew\
+        cp -r glew-src\include glew\
+        cp -r glew-src\lib glew\
         cp glew-src\LICENSE.txt glew\
     - name: Cache glew
       env:

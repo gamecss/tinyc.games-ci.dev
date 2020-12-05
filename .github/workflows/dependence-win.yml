@@ -45,13 +45,12 @@ jobs:
         cp -r glew-src\lib glew\
         cp glew-src\LICENSE.txt glew\
     - name: Cache glew
-      uses: actions/cache@v2
+      uses: actions/cache@main
       with:
         path: glew
         key: win-glew
-        restore-keys: win-glew
     - name: Upload glew
       uses: actions/upload-artifact@v2
       with:
-        name: glew.zip
+        name: glew
         path: glew

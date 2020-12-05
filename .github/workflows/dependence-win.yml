@@ -47,8 +47,8 @@ jobs:
     - name: Cache glew
       uses: actions/cache@main
       with:
+        key: glew-${{ runner.os }}
         path: glew
-        key: win-glew
     - name: Upload glew
       uses: actions/upload-artifact@v2
       with:

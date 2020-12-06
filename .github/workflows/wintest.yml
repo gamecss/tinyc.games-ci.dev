@@ -14,10 +14,11 @@ jobs:
     - name: Prepare build
       run: |
         pip install cmake-converter
+        cd blocko
         mkdir build
-        mkdir build/blocko
-        cd build/blocko
-        cmake-converter -s ../../        devenv blocko\vs2019-blocko\vs2019-blocko.sln
+        cd build
+        cmake-converter -s ..\vs2019-blocko\vs2019-blocko.sln
+        ls
     - name: Build blocko
       shell: cmd
       run: |

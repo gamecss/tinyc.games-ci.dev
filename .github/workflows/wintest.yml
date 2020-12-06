@@ -10,22 +10,23 @@ jobs:
     steps:
     - uses: actions/checkout@main
       with:
-        repository: superjer/tinyc.games
-    - name: Prepare build
-      run: |
-        pip install cmake-converter
-        cd blocko
-        mkdir build
-        cd build
-        cmake-converter -s ..\vs2019-blocko\vs2019-blocko.sln
-        ls
+        repository: gamecss/tinyc.games
+        ref: patch-1
+    #- name: Prepare build
+   #   run: |
+   #     pip install cmake-converter
+  #      cd blocko
+  #      mkdir build
+   #     cd build
+  #      cmake-converter -s ..\vs2019-blocko\vs2019-blocko.sln
+   #     ls
     - name: Build blocko
       shell: cmd
       run: |
         call C:\"Program Files (x86)"\"Microsoft Visual Studio"\2019\Enterprise\VC\Auxiliary\Build\vcvarsall.bat amd64
         devenv blocko\vs2019-blocko\vs2019-blocko.sln /Build "Release|x64"
-       # call C:\"Program Files (x86)"\"Microsoft Visual Studio"\2019\Enterprise\VC\Auxiliary\Build\vcvarsall.bat amd64_x86
-       # devenv blocko\vs2019-blocko\vs2019-blocko.sln /Build "Release|Win32"
+        call C:\"Program Files (x86)"\"Microsoft Visual Studio"\2019\Enterprise\VC\Auxiliary\Build\vcvarsall.bat amd64_x86
+        devenv blocko\vs2019-blocko\vs2019-blocko.sln /Build "Release|Win32"
      #  mkdir blocko
      #   copy vs2019-blocko\x64\release\vs2019-blocko.exe blocko\
    #     copy _win\SDL2-2.0.5\lib\x64\SDL2.dll blocko\

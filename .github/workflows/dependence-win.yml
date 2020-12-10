@@ -24,19 +24,14 @@ jobs:
       working-directory: glew-src\build\vc15
       run: |
         call C:\"Program Files (x86)"\"Microsoft Visual Studio"\2017\Enterprise\VC\Auxiliary\Build\vcvarsall.bat amd64
-        msbuild /m glew.sln /p:Configuration=Debug;Platform=x64   
-        # /Projects glew_shared glewinfo visualinfo
-        #devenv glew.sln /Build "Release|x64" /Project visualinfo
-        #devenv glew.sln /Build "Release|x64" /Project glewinfo
+        msbuild /m glew.sln /p:Configuration=Release;Platform=x64
         ls ..\..\
     - name: Build x86 arch
       shell: cmd
       working-directory: glew-src\build\vc15
       run: |
         call C:\"Program Files (x86)"\"Microsoft Visual Studio"\2017\Enterprise\VC\Auxiliary\Build\vcvarsall.bat amd64_x86
-        devenv glew.sln /Build "Release|Win32" /Project glew_shared
-        devenv glew.sln /Build "Release|Win32" /Project visualinfo
-        devenv glew.sln /Build "Release|Win32" /Project glewinfo
+        msbuild /m glew.sln /p:Configuration=Release;Platform=x86
         ls ..\..\
     - name: Prepare files
       run: |

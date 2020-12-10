@@ -31,7 +31,7 @@ jobs:
       working-directory: glew-src\build\vc15
       run: |
         call C:\"Program Files (x86)"\"Microsoft Visual Studio"\2017\Enterprise\VC\Auxiliary\Build\vcvarsall.bat amd64_x86
-        msbuild /m glew.sln /p:Configuration=Release;Platform=x86
+        msbuild /m glew.sln /p:Configuration=Release;Platform=Win32
         ls ..\..\
     - name: Prepare files
       run: |

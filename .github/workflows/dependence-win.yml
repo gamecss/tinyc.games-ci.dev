@@ -56,5 +56,5 @@ jobs:
         run: |
           git clone https://github.com/SDL-mirror/SDL.git
           cd SDL
-          git checkout (git describe --abbrev=0)
+          git checkout (git describe --tags (git rev-list --tags --max-count=1))
           git tag

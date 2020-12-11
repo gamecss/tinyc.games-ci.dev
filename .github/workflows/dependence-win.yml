@@ -57,7 +57,8 @@ jobs:
           git clone https://github.com/SDL-mirror/SDL.git
           cd SDL
           git checkout (git describe --tags (git rev-list --tags --max-count=1))
-      - working-directory: SDL\VisualC\SDL
+      - shell: cmd
+        working-directory: SDL\VisualC\SDL
         run: |
           call C:\"Program Files (x86)"\"Microsoft Visual Studio"\2019\Enterprise\VC\Auxiliary\Build\vcvarsall.bat amd64
           msbuild /m SDL.vcxproj /p:Configuration=Release;Platform=x64

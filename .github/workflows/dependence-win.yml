@@ -9,8 +9,7 @@ on:
 jobs:
   glew:
     runs-on: windows-2016
-    steps:
-    
+    steps:  
     - name: Get glew source
       run: |
         certutil -urlcache -split -f https://sourceforge.net/projects/glew/files/latest/download glew.tgz
@@ -50,3 +49,13 @@ jobs:
       with:
         name: glew
         path: glew
+  sdl:
+    runs-on: windows-2019
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          repository: SDL-mirror/SDL
+      - shell: cmd
+        run: |
+          git checkout (git describe --abbrev=0)
+          dir

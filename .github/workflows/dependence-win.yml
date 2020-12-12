@@ -112,11 +112,11 @@ jobs:
           name: sdl
           path: SDL\sdl
         
-    tinyc:
-      runs-on: windows-2019
-      steps:
-        - name: Get sdl source & prepare build
-          run: |
-            git clone git://repo.or.cz/tinycc.git
-            cd SDL
-            git checkout (git describe --tags (git rev-list --tags --max-count=1))  
+  tinycc:
+    runs-on: windows-2019
+    steps:
+      - name: Get sdl source & prepare build
+        run: |
+          git clone git://repo.or.cz/tinycc.git
+          cd SDL
+          git checkout (git describe --tags (git rev-list --tags --max-count=1))  

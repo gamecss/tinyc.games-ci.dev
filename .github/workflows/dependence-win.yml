@@ -124,8 +124,7 @@ jobs:
         shell: cmd
         working-directory: tinycc\win32
         run: |
-          echo off
-          call C:\"Program Files (x86)"\"Microsoft Visual Studio"\2017\Enterprise\VC\Auxiliary\Build\vcvarsall.bat amd64
-          build-tcc.bat -c cl -t 64 -i tcc-x64
-          call C:\"Program Files (x86)"\"Microsoft Visual Studio"\2017\Enterprise\VC\Auxiliary\Build\vcvarsall.bat amd64_x86
-          build-tcc.bat -c cl -t 32 -i tcc-x86
+          call C:\"Program Files (x86)"\"Microsoft Visual Studio"\2019\Enterprise\VC\Auxiliary\Build\vcvarsall.bat amd64
+          call build-tcc.bat -c cl -t 64 -i tcc-x64
+          call C:\"Program Files (x86)"\"Microsoft Visual Studio"\2019\Enterprise\VC\Auxiliary\Build\vcvarsall.bat amd64_x86
+          call build-tcc.bat -c cl -t 32 -i tcc-x86

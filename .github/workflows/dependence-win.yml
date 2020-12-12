@@ -117,6 +117,12 @@ jobs:
     steps:
       - name: Get sdl source & prepare build
         run: |
-          git clone git://repo.or.cz/tinycc.git
-          cd SDL
-          git checkout (git describe --tags (git rev-list --tags --max-count=1))  
+          git clone -b mob git://repo.or.cz/tinycc.git
+          mkdir tinycc\win32\tcc-x64
+          mkdir tinycc\win32\tcc-x86
+      - name: Build all arch
+        shell: cmd
+        working-directory: tinycc\win32
+        run: |
+          build-tcc.bat -c cl -t 64 -i tcc-x64
+          build-tcc.bat -c cl -t 32 -i tcc-x86

@@ -84,14 +84,14 @@ jobs:
       - name: Prepare files
         working-directory: SDL\sdl\lib
         run: |
-          cp ..\VisualC\SDL\x64\Release\SDL2.dll .\x64\
-          cp ..\VisualC\SDL\x64\Release\SDL2.lib .\x64\
-          cp ..\VisualC\SDLmain\x64\Release\SDL2main.lib .\x64\
-          cp ..\VisualC\SDLtest\x64\Release\SDL2test.lib .\x64\
-          cp ..\VisualC\SDL\Win32\Release\SDL2.dll .\x86\
-          cp ..\VisualC\SDL\Win32\Release\SDL2.lib .\x86\
-          cp ..\VisualC\SDLmain\Win32\Release\SDL2main.lib .\x86\
-          cp ..\VisualC\SDLtest\Win32\Release\SDL2test.lib .\x86\
+          cp ..\..\VisualC\SDL\x64\Release\SDL2.dll .\x64\
+          cp ..\..\VisualC\SDL\x64\Release\SDL2.lib .\x64\
+          cp ..\..\VisualC\SDLmain\x64\Release\SDL2main.lib .\x64\
+          cp ..\..\VisualC\SDLtest\x64\Release\SDL2test.lib .\x64\
+          cp ..\..\VisualC\SDL\Win32\Release\SDL2.dll .\x86\
+          cp ..\..\VisualC\SDL\Win32\Release\SDL2.lib .\x86\
+          cp ..\..\VisualC\SDLmain\Win32\Release\SDL2main.lib .\x86\
+          cp ..\..\VisualC\SDLtest\Win32\Release\SDL2test.lib .\x86\
           cd ..
           cp -r ..\docs .\
           cp -r ..\include .\

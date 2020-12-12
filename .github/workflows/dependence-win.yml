@@ -57,29 +57,52 @@ jobs:
           git clone https://github.com/SDL-mirror/SDL.git
           cd SDL
           git checkout (git describe --tags (git rev-list --tags --max-count=1))
-          mkdir sdl
-          mkdir sdl\lib
-          mkdir sdl\lib\x64
-          mkdir sdl\lib\x86
-      - name: build x64 arch
+          mkdir sdl | Out-Null
+          mkdir sdl\lib | Out-Null
+          mkdir sdl\lib\x64 | Out-Null
+          mkdir sdl\lib\x86 | Out-Null
+      - name: Build x64 arch
+        working-directory: SDL\VisualC\SDL
         shell: cmd 
         run: |
           call C:\"Program Files (x86)"\"Microsoft Visual Studio"\2019\Enterprise\VC\Auxiliary\Build\vcvarsall.bat amd64 > NUL
-          cd SDL\VisualC\SDL
-          msbuild SDL.vcxproj /m /p:Configuration=Release;Platform=x64;PlatformToolset=v142
+          msbuild SDL.vcxproj /m /nologo /p:Configuration=Release;Platform=x64;PlatformToolset=v142
           cd ..\SDLmain
-          msbuild SDLmain.vcxproj /m /p:Configuration=Release;Platform=x64;PlatformToolset=v142
+          msbuild SDLmain.vcxproj /m /nologo /p:Configuration=Release;Platform=x64;PlatformToolset=v142
           cd ..\SDLtest
-          msbuild SDLtest.vcxproj /m /p:Configuration=Release;Platform=x64;PlatformToolset=v142
-      - name: build x86 arch
+          msbuild SDLtest.vcxproj /m /nologo /p:Configuration=Release;Platform=x64;PlatformToolset=v142
+      - name: Build x86 arch
+        working-directory: SDL\VisualC\SDL
         shell: cmd 
         run: |
           call C:\"Program Files (x86)"\"Microsoft Visual Studio"\2019\Enterprise\VC\Auxiliary\Build\vcvarsall.bat amd64_x86 > NUL
-          cd SDL\VisualC\SDL
-          msbuild SDL.vcxproj /m /p:Configuration=Release;Platform=Win32;PlatformToolset=v142
+          msbuild SDL.vcxproj /m /nologo /p:Configuration=Release;Platform=Win32;PlatformToolset=v142
           cd ..\SDLmain
-          msbuild SDLmain.vcxproj /m /p:Configuration=Release;Platform=Win32;PlatformToolset=v142
+          msbuild SDLmain.vcxproj /m /nologo /p:Configuration=Release;Platform=Win32;PlatformToolset=v142
           cd ..\SDLtest
-          msbuild SDLtest.vcxproj /m /p:Configuration=Release;Platform=Win32;PlatformToolset=v142
-      - name: prepare files
-        run: echo "Wait write"
+          msbuild SDLtest.vcxproj /m /nologo /p:Configuration=Release;Platform=Win32;PlatformToolset=v142
+      - name: Prepare files
+        working-directory: SDL\sdl\lib
+        run: |
+          cp ..\VisualC\SDL\x64\Release\SDL2.dll .\x64\
+          cp ..\VisualC\SDL\x64\Release\SDL2.lib .\x64\
+          cp ..\VisualC\SDLmain\x64\Release\SDL2main.lib .\x64\
+          cp ..\VisualC\SDLtest\x64\Release\SDL2test.lib .\x64\
+          cp ..\VisualC\SDL\Win32\Release\SDL2.dll .\x86\
+          cp ..\VisualC\SDL\Win32\Release\SDL2.lib .\x86\
+          cp ..\VisualC\SDLmain\Win32\Release\SDL2main.lib .\x86\
+          cp ..\VisualC\SDLtest\Win32\Release\SDL2test.lib .\x86\
+          cd ..
+          cp -r ..\docs .\
+          cp -r ..\include .\
+          cp ..\BUGS.txt .\
+          cp ..\COPYING.txt .\
+          cp ..\README-SDL.txt .\
+          cp ..\README.txt .\
+          cp ..\WhatsNew.txt .\
+          ls .
+          ls lib\
+      - uses: actions/upload-artifact@v2
+        with:
+          name: sdl
+          path: SDL\sdl

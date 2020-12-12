@@ -57,10 +57,10 @@ jobs:
           git clone https://github.com/SDL-mirror/SDL.git
           cd SDL
           git checkout (git describe --tags (git rev-list --tags --max-count=1))
-          mkdir sdl > NUL
-          mkdir sdl\lib > NUL
-          mkdir sdl\lib\x64 > NUL
-          mkdir sdl\lib\x86 > NUL
+          mkdir sdl
+          mkdir sdl\lib
+          mkdir sdl\lib\x64
+          mkdir sdl\lib\x86
       - name: build x64 arch
         shell: cmd 
         run: |

@@ -102,7 +102,21 @@ jobs:
           cp ..\WhatsNew.txt .\
           ls .
           ls lib\
+      - name: Cache sdl
+        uses: actions/cache@main
+        with:
+          key: sdl-${{ runner.os }}
+          path: SDL\sdl
       - uses: actions/upload-artifact@v2
         with:
           name: sdl
           path: SDL\sdl
+        
+    tinyc:
+      runs-on: windows-2019
+      steps:
+        - name: Get sdl source & prepare build
+          run: |
+            git clone git://repo.or.cz/tinycc.git
+            cd SDL
+            git checkout (git describe --tags (git rev-list --tags --max-count=1))  

@@ -61,5 +61,4 @@ jobs:
         working-directory: SDL\VisualC\SDL
         run: |
           call C:\"Program Files (x86)"\"Microsoft Visual Studio"\2019\Enterprise\VC\Auxiliary\Build\vcvarsall.bat amd64
-          vcbuild /upgrade
-          msbuild /m SDL.vcxproj /p:Configuration=Release;Platform=x64
+          msbuild /m SDL.vcxproj /p:Configuration=Release;Platform=x64;Toolset=v160

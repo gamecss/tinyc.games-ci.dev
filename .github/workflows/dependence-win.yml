@@ -67,9 +67,9 @@ jobs:
           call C:\"Program Files (x86)"\"Microsoft Visual Studio"\2019\Enterprise\VC\Auxiliary\Build\vcvarsall.bat amd64 > NUL
           cd SDL\VisualC\SDL
           msbuild SDL.vcxproj /m /p:Configuration=Release;Platform=x64;PlatformToolset=v142
-          cd SDL\VisualC\SDLmain
+          cd ..\SDLmain
           msbuild SDLmain.vcxproj /m /p:Configuration=Release;Platform=x64;PlatformToolset=v142
-          cd SDL\VisualC\SDLtest
+          cd ..\SDLtest
           msbuild SDLtest.vcxproj /m /p:Configuration=Release;Platform=x64;PlatformToolset=v142
       - name: build x86 arch
         shell: cmd 
@@ -77,9 +77,9 @@ jobs:
           call C:\"Program Files (x86)"\"Microsoft Visual Studio"\2019\Enterprise\VC\Auxiliary\Build\vcvarsall.bat amd64_x86 > NUL
           cd SDL\VisualC\SDL
           msbuild SDL.vcxproj /m /p:Configuration=Release;Platform=Win32;PlatformToolset=v142
-          cd SDL\VisualC\SDLmain
+          cd ..\SDLmain
           msbuild SDLmain.vcxproj /m /p:Configuration=Release;Platform=Win32;PlatformToolset=v142
-          cd SDL\VisualC\SDLtest
+          cd ..\SDLtest
           msbuild SDLtest.vcxproj /m /p:Configuration=Release;Platform=Win32;PlatformToolset=v142
       - name: prepare files
         run: echo "Wait write"

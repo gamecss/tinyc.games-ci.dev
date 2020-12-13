@@ -20,4 +20,4 @@ jobs:
       - name: Build
         working-directory: SDL
         run: |
-          xcodebuild -project Xcode/SDL/SDL.xcodeproj/ -target Framework
+          xcodebuild -project Xcode/SDL/SDL.xcodeproj/ -target Framework -configuration Release

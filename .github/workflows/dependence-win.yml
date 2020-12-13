@@ -132,8 +132,9 @@ jobs:
           mkdir sdl_ttf | Out-Null
           mkdir sdl_ttf\include | Out-Null
           mkdir sdl_ttf\lib | Out-Null
-          copy sdl2\include\SDL_endian.h .\
-          copy sdl2\include\SDL.h .\
+          copy sdl2\include\*.h VisualC\external\include\
+          copy sdl2\lib\x86\SDL2.lib VisualC\external\lib\x86\
+          copy sdl2\lib\x64\SDL2.lib VisualC\external\lib\x64\
       - name: Build x64 arch
         shell: cmd
         working-directory: SDL_ttf\VisualC

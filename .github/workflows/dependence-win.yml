@@ -119,7 +119,7 @@ jobs:
         uses: actions/cache@main
         with:
           path: sdl2
-          keys: sdl-win-${{ github.run_id }}
+          key: sdl-win-${{ github.run_id }}
       - name: Get sdl_ttf source & prepare build
         run: |
           git clone https://github.com/SDL-mirror/SDL_ttf.git

@@ -52,6 +52,10 @@ jobs:
   sdl:
     runs-on: windows-2019
     steps:
+      - name: Restore sdl
+        uses: actions/cache@main
+        with:
+          restore-keys:  
       - name: Get sdl source & prepare build
         run: |
           git clone https://github.com/SDL-mirror/SDL.git
@@ -105,15 +109,21 @@ jobs:
       - name: Cache sdl
         uses: actions/cache@main
         with:
-          key: sdl-win
           path: SDL\sdl2
+          key: sdl-win
       - uses: actions/upload-artifact@v2
         with:
           name: sdl
           path: SDL\sdl2
   sdl_ttf:
-    runs-on: windows-2019
+    needs: sdl
+    runs-on: windows-2019  
     steps:
+      - name: Restore sdl
+        uses: actions/cache@main
+        with:
+          path: sdl2
+          restore-keys: sdl-win
       - name: Get sdl_ttf source & prepare build
         run: |
           git clone https://github.com/SDL-mirror/SDL_ttf.git
@@ -122,6 +132,8 @@ jobs:
           mkdir sdl_ttf | Out-Null
           mkdir sdl_ttf\include | Out-Null
           mkdir sdl_ttf\lib | Out-Null
+          copy sdl2\include\SDL_endian.h .\
+          copy sdl2\include\SDL.h .\
       - name: Build x64 arch
         shell: cmd
         working-directory: SDL_ttf\VisualC

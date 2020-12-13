@@ -121,6 +121,7 @@ jobs:
           path: sdl2
       - name: Get sdl_ttf source & prepare build
         run: |
+          ls sdl2\
           git clone https://github.com/SDL-mirror/SDL_ttf.git
           cd SDL_ttf
           git checkout (git describe --tags (git rev-list --tags --max-count=1))

@@ -57,6 +57,7 @@ jobs:
           git clone https://github.com/SDL-mirror/SDL.git
           cd SDL
           git checkout (git describe --tags (git rev-list --tags --max-count=1))
+          cd ..
           mkdir sdl2 | Out-Null
           mkdir sdl2\lib | Out-Null
           mkdir sdl2\lib\x64 | Out-Null
@@ -82,35 +83,33 @@ jobs:
           cd ..\SDLtest
           msbuild SDLtest.vcxproj /m /nologo /p:Configuration=Release;Platform=Win32;PlatformToolset=v142
       - name: Prepare files
-        working-directory: SDL\sdl2\lib
+        working-directory: sdl2\lib
         run: |
-          cp ..\..\VisualC\SDL\x64\Release\SDL2.dll .\x64\
-          cp ..\..\VisualC\SDL\x64\Release\SDL2.lib .\x64\
-          cp ..\..\VisualC\SDLmain\x64\Release\SDL2main.lib .\x64\
-          cp ..\..\VisualC\SDLtest\x64\Release\SDL2test.lib .\x64\
-          cp ..\..\VisualC\SDL\Win32\Release\SDL2.dll .\x86\
-          cp ..\..\VisualC\SDL\Win32\Release\SDL2.lib .\x86\
-          cp ..\..\VisualC\SDLmain\Win32\Release\SDL2main.lib .\x86\
-          cp ..\..\VisualC\SDLtest\Win32\Release\SDL2test.lib .\x86\
+          cp ..\..\SDL\VisualC\SDL\x64\Release\SDL2.dll .\x64\
+          cp ..\..\SDL\VisualC\SDL\x64\Release\SDL2.lib .\x64\
+          cp ..\..\SDL\VisualC\SDLmain\x64\Release\SDL2main.lib .\x64\
+          cp ..\..\SDL\VisualC\SDLtest\x64\Release\SDL2test.lib .\x64\
+          cp ..\..\SDL\VisualC\SDL\Win32\Release\SDL2.dll .\x86\
+          cp ..\..\SDL\VisualC\SDL\Win32\Release\SDL2.lib .\x86\
+          cp ..\..\SDL\VisualC\SDLmain\Win32\Release\SDL2main.lib .\x86\
+          cp ..\..\SDL\VisualC\SDLtest\Win32\Release\SDL2test.lib .\x86\
           cd ..
-          cp -r ..\docs .\
-          cp -r ..\include .\
-          cp ..\BUGS.txt .\
-          cp ..\COPYING.txt .\
-          cp ..\README-SDL.txt .\
-          cp ..\README.txt .\
-          cp ..\WhatsNew.txt .\
-          ls .
-          ls lib\
+          cp -r ..\SDL\docs .\
+          cp -r ..\SDL\include .\
+          cp ..\SDL\BUGS.txt .\
+          cp ..\SDL\COPYING.txt .\
+          cp ..\SDL\README-SDL.txt .\
+          cp ..\SDL\README.txt .\
+          cp ..\SDL\WhatsNew.txt .\
       - name: Cache sdl
         uses: actions/cache@main
         with:
           key: sdl-win-${{ github.run_id }}
-          path: SDL\sdl2
+          path: sdl2
       - uses: actions/upload-artifact@v2
         with:
           name: sdl-win-${{ github.run_id }}
-          path: SDL\sdl2
+          path: sdl2
   sdl_ttf:
     needs: sdl
     runs-on: windows-2019  

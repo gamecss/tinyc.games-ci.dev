@@ -1,0 +1,23 @@
+name: mac-dependence
+
+on:
+  push:
+    branches: [ ci ]
+  pull_request:
+    branches: [ ci ]
+
+jobs:
+  build:
+    name: sdl
+    runs-on: macos-latest
+
+    steps:
+      - name: Get sdl source
+        run: |
+          git clone https://github.com/SDL-mirror/SDL.git
+          cd SDL
+          git checkout (git describe --tags (git rev-list --tags --max-count=1))
+      - name: Build
+        working-directory: Xcode\SDL
+        run: |
+          xcodebuild -project SDL.xcodeproj/ -target Framework

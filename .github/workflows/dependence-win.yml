@@ -141,7 +141,7 @@ jobs:
         working-directory: SDL_ttf\VisualC
         run: |
           call C:\"Program Files (x86)"\"Microsoft Visual Studio"\2019\Enterprise\VC\Auxiliary\Build\vcvarsall.bat amd64_x86 > NUL
-          msbuild SDL_ttf.vcxproj /m /nologo /p:Configuration=Release;Platform=Win3;PlatformToolset=v142
+          msbuild SDL_ttf.vcxproj /m /nologo /p:Configuration=Release;Platform=Win32;PlatformToolset=v142
       - name: Prepare files
         working-directory: SDL_ttf\sdl_ttf
         run: |

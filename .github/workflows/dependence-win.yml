@@ -57,10 +57,10 @@ jobs:
           git clone https://github.com/SDL-mirror/SDL.git
           cd SDL
           git checkout (git describe --tags (git rev-list --tags --max-count=1))
-          mkdir sdl | Out-Null
-          mkdir sdl\lib | Out-Null
-          mkdir sdl\lib\x64 | Out-Null
-          mkdir sdl\lib\x86 | Out-Null
+          mkdir sdl2 | Out-Null
+          mkdir sdl2\lib | Out-Null
+          mkdir sdl2\lib\x64 | Out-Null
+          mkdir sdl2\lib\x86 | Out-Null
       - name: Build x64 arch
         working-directory: SDL\VisualC\SDL
         shell: cmd 
@@ -82,7 +82,7 @@ jobs:
           cd ..\SDLtest
           msbuild SDLtest.vcxproj /m /nologo /p:Configuration=Release;Platform=Win32;PlatformToolset=v142
       - name: Prepare files
-        working-directory: SDL\sdl\lib
+        working-directory: SDL\sdl2\lib
         run: |
           cp ..\..\VisualC\SDL\x64\Release\SDL2.dll .\x64\
           cp ..\..\VisualC\SDL\x64\Release\SDL2.lib .\x64\
@@ -106,18 +106,43 @@ jobs:
         uses: actions/cache@main
         with:
           key: sdl-win
-          path: SDL\sdl
+          path: SDL\sdl2
       - uses: actions/upload-artifact@v2
         with:
           name: sdl
-          path: SDL\sdl
-        
+          path: SDL\sdl2
+  sdl_ttf:
+    runs-on: windows-2019
+    steps:
+      - name: Get sdl_ttf source & prepare build
+        run: |
+          git clone https://github.com/SDL-mirror/SDL_ttf.git
+          cd SDL_ttf
+          git checkout (git describe --tags (git rev-list --tags --max-count=1))
+          mkdir sdl_ttf | Out-Null
+          mkdir sdl_ttf\include | Out-Null
+          mkdir sdl_ttf\lib | Out-Null
+      - name: Build x64 arch
+        shell: cmd
+        working-directory: SDL_ttf\VisualC
+        run: |
+          call C:\"Program Files (x86)"\"Microsoft Visual Studio"\2019\Enterprise\VC\Auxiliary\Build\vcvarsall.bat amd64 > NUL
+          msbuild SDL_ttf.vcxproj /m /nologo /p:Configuration=Release;Platform=x64;PlatformToolset=v142
+      - name: Build x86 arch
+        shell: cmd
+        working-directory: SDL_ttf\VisualC
+        run: |
+          call C:\"Program Files (x86)"\"Microsoft Visual Studio"\2019\Enterprise\VC\Auxiliary\Build\vcvarsall.bat amd64_x86 > NUL
+          msbuild SDL_ttf.vcxproj /m /nologo /p:Configuration=Release;Platform=Win3;PlatformToolset=v142
+      - name: Prepare files
+        working-directory: SDL_ttf\sdl_ttf
+        run: |
+          ls ..\VisualC
   tinycc:
     runs-on: windows-2019
     steps:
       - name: Get sdl source
-        run: |
-          git clone -b mob git://repo.or.cz/tinycc.git
+        run: git clone -b mob git://repo.or.cz/tinycc.git
       - name: Build all arch
         shell: cmd
         working-directory: tinycc\win32

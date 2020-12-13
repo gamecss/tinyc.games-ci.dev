@@ -52,10 +52,6 @@ jobs:
   sdl:
     runs-on: windows-2019
     steps:
-      - name: Restore sdl
-        uses: actions/cache@main
-        with:
-          restore-keys:  
       - name: Get sdl source & prepare build
         run: |
           git clone https://github.com/SDL-mirror/SDL.git

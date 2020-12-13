@@ -42,7 +42,7 @@ jobs:
     - name: Cache glew
       uses: actions/cache@main
       with:
-        key: glew-${{ runner.os }}
+        key: glew-win
         path: glew
     - name: Upload glew
       uses: actions/upload-artifact@v2
@@ -105,7 +105,7 @@ jobs:
       - name: Cache sdl
         uses: actions/cache@main
         with:
-          key: sdl-${{ runner.os }}
+          key: sdl-win
           path: SDL\sdl
       - uses: actions/upload-artifact@v2
         with:
@@ -115,11 +115,9 @@ jobs:
   tinycc:
     runs-on: windows-2019
     steps:
-      - name: Get sdl source & prepare build
+      - name: Get sdl source
         run: |
           git clone -b mob git://repo.or.cz/tinycc.git
-          mkdir tinycc\win32\tcc-x64
-          mkdir tinycc\win32\tcc-x86
       - name: Build all arch
         shell: cmd
         working-directory: tinycc\win32
@@ -128,3 +126,23 @@ jobs:
           call build-tcc.bat -c cl -t 64 -i tcc-x64
           call C:\"Program Files (x86)"\"Microsoft Visual Studio"\2019\Enterprise\VC\Auxiliary\Build\vcvarsall.bat amd64_x86
           call build-tcc.bat -c cl -t 32 -i tcc-x86
+      - name: Cache x64 tinycc
+        uses: actions/cache@main
+        with:
+          key: tcc-x64-win
+          path: tinycc\win32\tcc-x64
+      - name: Cache x86 tinycc
+        uses: actions/cache@main
+        with:
+          key: tcc-x86-win
+          path: tinycc\win32\tcc-x86
+      - name: Upload x64 tinycc
+        uses: actions/upload-artifact@v2
+        with:
+          name: tcc-x64
+          path: tinycc\win32\tcc-x64
+      - name: Upload x86 tinycc
+        uses: actions/upload-artifact@v2
+        with:
+          name: tcc-x86
+          path: tinycc\win32\tcc-x86

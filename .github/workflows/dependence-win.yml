@@ -105,8 +105,8 @@ jobs:
       - name: Cache sdl
         uses: actions/cache@main
         with:
-          path: SDL\sdl2
           key: sdl-win-${{ github.run_id }}
+          path: SDL\sdl2
       - uses: actions/upload-artifact@v2
         with:
           name: sdl-win-${{ github.run_id }}
@@ -118,8 +118,8 @@ jobs:
       - name: Restore sdl
         uses: actions/cache@main
         with:
-          path: sdl2
           key: sdl-win-${{ github.run_id }}
+          path: sdl2
       - name: Get sdl_ttf source & prepare build
         run: |
           git clone https://github.com/SDL-mirror/SDL_ttf.git

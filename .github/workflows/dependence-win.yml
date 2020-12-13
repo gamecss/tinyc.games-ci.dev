@@ -103,7 +103,7 @@ jobs:
           ls .
           ls lib\
       - name: Cache sdl
-        uses: actions/cache@main
+        uses: pat-s/always-upload-cache@v2.1.3
         with:
           path: SDL\sdl2
           key: sdl-win

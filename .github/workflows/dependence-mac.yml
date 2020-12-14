@@ -20,4 +20,4 @@ jobs:
       - name: Build
         working-directory: SDL/Xcode/SDL
         run: |
-          xcodebuild -target SDL Release ONLY_ACTIVE_ARCH=NO -configuration 'Release' clean build
+          xcodebuild -target SDL ONLY_ACTIVE_ARCH=NO -configuration 'Release' clean build

@@ -31,3 +31,27 @@ jobs:
           if [[ $scheme = default ]]; then scheme=$(cat default); fi
           xcodebuild -scheme "$scheme" ONLY_ACTIVE_ARCH=NO -configuration 'Release'
           cp -r /Users/runner/Library/Developer/Xcode/DerivedData/SDL-gserqlkghybkaxdggwarbuabfcuy/Build/Products/Release/SDL2.framework ../../../SDL2.framework
+  sdl_ttf:
+    runs-on: macos-latest
+
+    steps:
+      - name: Get sdl_ttf source
+        run: |
+          git clone https://github.com/SDL-mirror/SDL_ttf.git
+          cd SDL_ttf
+          git checkout $(git describe --tags `git rev-list --tags --max-count=1`)
+      - name: Set Default Scheme
+        working-directory: SDL_ttf/Xcode/
+        run: |
+          scheme_list=$(xcodebuild -list -json | tr -d "\n")
+          default=$(echo $scheme_list | ruby -e "require 'json'; puts JSON.parse(STDIN.gets)['project']['targets'][0]")
+          echo $default | cat >default
+          echo Using default scheme: $default
+      - name: Build
+        working-directory: SDL_ttf/Xcode/
+        env:
+          scheme: ${{ 'default' }}
+        run: |
+          if [[ $scheme = default ]]; then scheme=$(cat default); fi
+          xcodebuild -scheme "$scheme" ONLY_ACTIVE_ARCH=NO -configuration 'Release'
+        # cp -r /Users/runner/Library/Developer/Xcode/DerivedData/SDL-gserqlkghybkaxdggwarbuabfcuy/Build/Products/Release/SDL2.framework ../../../SDL2.framework

@@ -20,4 +20,5 @@ jobs:
       - name: Build
         working-directory: SDL/Xcode/SDL
         run: |
+          xcodebuild -target hidapi ONLY_ACTIVE_ARCH=NO -configuration 'Release' clean build
           xcodebuild -target Framework ONLY_ACTIVE_ARCH=NO -configuration 'Release' clean build

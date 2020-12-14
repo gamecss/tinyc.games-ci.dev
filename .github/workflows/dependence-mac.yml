@@ -29,6 +29,7 @@ jobs:
       - name: Build
         working-directory: SDL/Xcode/SDL
         run: |
+          if [ $scheme = default ]; then scheme=$(cat default); fi
           xcodebuild -scheme "$scheme" ONLY_ACTIVE_ARCH=NO -configuration 'Release'
         # sudo cp -r build/Release/hidapi.framework /Library/Frameworks/hidapi.framework
         # xcodebuild -target Framework ONLY_ACTIVE_ARCH=NO -configuration 'Release' clean build

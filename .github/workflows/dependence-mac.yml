@@ -17,9 +17,18 @@ jobs:
           git clone https://github.com/SDL-mirror/SDL.git
           cd SDL
           git checkout $(git describe --tags `git rev-list --tags --max-count=1`)
+      - name: Set Default Scheme
+        working-directory: SDL/Xcode/SDL
+        env: |
+          scheme: ${{ 'default' }}
+        run: |
+          scheme_list=$(xcodebuild -list -json | tr -d "\n")
+          default=$(echo $scheme_list | ruby -e "require 'json'; puts JSON.parse(STDIN.gets)['project']['targets'][0]")
+          echo $default | cat >default
+          echo Using default scheme: $default
       - name: Build
         working-directory: SDL/Xcode/SDL
         run: |
-          xcodebuild -target hidapi ONLY_ACTIVE_ARCH=NO -configuration 'Release' clean build
-          sudo cp -r build/Release/hidapi.framework /Library/Frameworks/hidapi.framework
-          xcodebuild -target Framework ONLY_ACTIVE_ARCH=NO -configuration 'Release' clean build
+          xcodebuild -scheme "$scheme" ONLY_ACTIVE_ARCH=NO -configuration 'Release'
+        # sudo cp -r build/Release/hidapi.framework /Library/Frameworks/hidapi.framework
+        # xcodebuild -target Framework ONLY_ACTIVE_ARCH=NO -configuration 'Release' clean build

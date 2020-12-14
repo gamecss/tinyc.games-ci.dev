@@ -19,7 +19,7 @@ jobs:
           git checkout $(git describe --tags `git rev-list --tags --max-count=1`)
       - name: Set Default Scheme
         working-directory: SDL/Xcode/SDL
-        env: |
+        env:
           scheme: ${{ 'default' }}
         run: |
           scheme_list=$(xcodebuild -list -json | tr -d "\n")

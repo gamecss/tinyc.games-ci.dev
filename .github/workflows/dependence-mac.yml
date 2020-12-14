@@ -18,6 +18,6 @@ jobs:
           cd SDL
           git checkout $(git describe --tags `git rev-list --tags --max-count=1`)
       - name: Build
-        working-directory: SDL
+        working-directory: SDL/Xcode/SDL
         run: |
-          xcodebuild -project Xcode/SDL/SDL.xcodeproj/ -target Framework -configuration Release
+          xcodebuild -target SDL -configuration Release ONLY_ACTIVE_ARCH=NO -configuration 'Release' clean build

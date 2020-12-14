@@ -7,8 +7,7 @@ on:
     branches: [ ci ]
 
 jobs:
-  build:
-    name: sdl
+  sdl:
     runs-on: macos-latest
 
     steps:
@@ -31,5 +30,4 @@ jobs:
         run: |
           if [[ $scheme = default ]]; then scheme=$(cat default); fi
           xcodebuild -scheme "$scheme" ONLY_ACTIVE_ARCH=NO -configuration 'Release'
-        # sudo cp -r build/Release/hidapi.framework /Library/Frameworks/hidapi.framework
-        # xcodebuild -target Framework ONLY_ACTIVE_ARCH=NO -configuration 'Release' clean build
+          cp -r /Users/runner/Library/Developer/Xcode/DerivedData/SDL-gserqlkghybkaxdggwarbuabfcuy/Build/Products/Release/SDL2.framework ../../../SDL2.framework

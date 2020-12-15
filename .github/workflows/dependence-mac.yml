@@ -49,7 +49,7 @@ jobs:
           echo $default | cat >default
           echo Using default scheme: $default
       - name: Build freetype
-        run: ｜
+        run: |
           curl -o freetype.tar.gz https://sourceforge.net/projects/freetype/files/latest/download
           tar -xzvf freetype.tar.gz
       - name: Build sdl_ttf

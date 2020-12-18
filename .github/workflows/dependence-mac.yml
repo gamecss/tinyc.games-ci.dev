@@ -43,7 +43,7 @@ jobs:
           git checkout $(git describe --tags `git rev-list --tags --max-count=1`)
           mkdir build
       - name: prepare build
-        working-directory: freetype2/build
+        working-directory: freetype2
         run: cmake -E chdir build cmake -G Xcode -D BUILD_FRAMEWORK:BOOL=true .. #cmake .. -G "Xcode"
      # - name: Set Default Scheme
      #   working-directory: SDL_ttf/build/

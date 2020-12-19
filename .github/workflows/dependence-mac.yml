@@ -16,6 +16,7 @@ jobs:
           git clone https://github.com/SDL-mirror/SDL.git
           cd SDL
           git checkout $(git describe --tags `git rev-list --tags --max-count=1`)
+          mkdir build
       - name: Set Default Scheme
         working-directory: SDL/Xcode/SDL
         run: |

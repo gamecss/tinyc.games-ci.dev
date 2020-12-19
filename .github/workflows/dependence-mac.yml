@@ -44,9 +44,9 @@ jobs:
           git checkout $(git describe --tags `git rev-list --tags --max-count=1`)
           mkdir build
       - name: prepare build
-        working-directory: SDL_ttf
+        working-directory: SDL_ttf/build
         run: | 
-          cmake -E chdir build -G Xcode -D BUILD_FRAMEWORK:BOOL=true .. 
+          cmake -G Xcode -D BUILD_FRAMEWORK:BOOL=true .. 
         #cmake .. -G "Xcode"
         # sudo xcode-select -switch /Applications/Xcode_10.3.app/
           

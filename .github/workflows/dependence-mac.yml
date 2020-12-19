@@ -32,19 +32,20 @@ jobs:
           if [[ $scheme = default ]]; then scheme=$(cat default); fi
           xcodebuild -scheme "$scheme" ONLY_ACTIVE_ARCH=NO -configuration 'Release'
           cp -r /Users/runner/Library/Developer/Xcode/DerivedData/SDL-gserqlkghybkaxdggwarbuabfcuy/Build/Products/Release/SDL2.framework ../../../SDL2.framework
-  freetype:
+  sdl_ttf:
     runs-on: macos-latest
 
     steps:
-      - name: Get freetype source
+      - name: Get sdl_ttf source
         run: |
-          git clone https://git.savannah.gnu.org/git/freetype/freetype2.git
-          cd freetype2
+          git clone https://github.com/SDL_mirror/SDL_ttf.git
+          cd SDL_ttf
           git checkout $(git describe --tags `git rev-list --tags --max-count=1`)
           mkdir build
       - name: prepare build
-        working-directory: freetype2
-        run: cmake -E chdir build cmake -G Xcode -D BUILD_FRAMEWORK:BOOL=true .. #cmake .. -G "Xcode"
+        working-directory: SDL_ttf
+        run: | #cmake -E chdir build cmake -G Xcode -D BUILD_FRAMEWORK:BOOL=true .. #cmake .. -G "Xcode"
+          ./configure CC="sh gcc-fat.sh"
      # - name: Set Default Scheme
      #   working-directory: SDL_ttf/build/
      #   run: |
@@ -57,11 +58,11 @@ jobs:
    #       curl -o freetype.tar.gz https://sourceforge.net/projects/freetype/files/latest/download
  #         tar -zxvf freetype.tar.gz -C freetype
       - name: Build sdl_ttf
-        working-directory: freetype2
+        working-directory: SDL_ttf
       #  env:
     #      scheme: ${{ 'default' }}
         run: |
-          cmake --build build
+          make
         #  if [[ $scheme = default ]]; then scheme=$(cat default); fi
        #   xcodebuild -scheme "$scheme" -configuration 'Release'
        # sudo xcode-select -switch /Applications/Xcode_10.3.app/          

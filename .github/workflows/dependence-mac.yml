@@ -18,7 +18,7 @@ jobs:
           git checkout $(git describe --tags `git rev-list --tags --max-count=1`)
           mkdir build
       - name: Set Default Scheme
-        working-directory: SDL/Xcode/SDL
+        working-directory: SDL
         run: |
           sudo xcode-select -switch /Applications/Xcode_10.3.app/
           scheme_list=$(xcodebuild -list -json | tr -d "\n")

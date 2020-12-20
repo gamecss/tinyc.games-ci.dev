@@ -19,6 +19,7 @@ jobs:
       - name: Build
         working-directory: SDL/Xcode/SDL
         run: |
+          xcode-select -switch /Applications/Xcode_10.3.app
           xcodebuild -scheme Framework VALID_ARCHS="i386 x86_64" -configuration 'Release'
           cp -r /Users/runner/Library/Developer/Xcode/DerivedData/SDL-gserqlkghybkaxdggwarbuabfcuy/Build/Products/Release/SDL2.framework ../../../SDL2.framework
       - name: Cache
@@ -43,7 +44,9 @@ jobs:
       - name: build
         working-directory: SDL_ttf/Xcode
         run: |
+          xcode-select -switch /Applications/Xcode_10.3.app
           cp -r ../../SDL2.framework ./Frameworks/SDL2.framework
+          sudo cp ./Frameworks/SDL2.framework/Headers/*	/Applications/Xcode_10.3.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/
           xcodebuild -scheme Framework VALID_ARCHS="i386 x86_64" -configuration 'Release'
   sdl_net:
     runs-on: macos-latest
@@ -62,5 +65,7 @@ jobs:
       - name: build
         working-directory: SDL_net/Xcode
         run: |
+          xcode-select -switch /Applications/Xcode_10.3.app
           cp -r ../../SDL2.framework ./Frameworks/SDL2.framework
+          sudo cp ./Frameworks/SDL2.framework/Headers/*	/Applications/Xcode_10.3.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/
           xcodebuild -scheme Framework VALID_ARCHS="i386 x86_64" -configuration 'Release'

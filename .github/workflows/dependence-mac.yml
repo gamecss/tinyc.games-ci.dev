@@ -48,6 +48,12 @@ jobs:
           cp -r ../../SDL2.framework ./Frameworks/SDL2.framework
           sudo cp ./Frameworks/SDL2.framework/Headers/*	/Applications/Xcode_10.3.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/
           xcodebuild -scheme Framework VALID_ARCHS="i386 x86_64" -configuration 'Release'
+          cp -r /Users/runner/Library/Developer/Xcode/DerivedData/SDL_ttf-bkqeqlcqtitnvrbrxydginuzbljt/Build/Products/Release/SDL2_ttf.framework ../../SDL2_ttf.framework
+      - name: Cache
+        uses: actions/cache@main
+        with:
+          key: sdl-mac-${{ github.run_id }}
+          path: SDL2.framework
   sdl_net:
     runs-on: macos-latest
     needs: [sdl]
@@ -66,6 +72,5 @@ jobs:
         working-directory: SDL_net/Xcode
         run: |
           sudo xcode-select -switch /Applications/Xcode_10.3.app
-          cp -r ../../SDL2.framework ./Frameworks/SDL2.framework
-          sudo cp ./Frameworks/SDL2.framework/Headers/*	/Applications/Xcode_10.3.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/
+          sudo cp ../../SDL2.framework/Headers/*	/Applications/Xcode_10.3.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/
           xcodebuild -scheme Framework VALID_ARCHS="i386 x86_64" -configuration 'Release'

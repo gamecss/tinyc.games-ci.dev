@@ -55,7 +55,7 @@ jobs:
           key: sdl-mac-${{ github.run_id }}
           path: SDL2.framework
   sdl_net:
-    runs-on: macos-10.14.6
+    runs-on: macos-10.14
     needs: [sdl]
     steps:
       - name: Get sdl_net source

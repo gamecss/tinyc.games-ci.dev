@@ -16,11 +16,10 @@ jobs:
           git clone https://github.com/SDL-mirror/SDL.git
           cd SDL
           git checkout $(git describe --tags `git rev-list --tags --max-count=1`)
-          mkdir build
       - name: Build
         working-directory: SDL/Xcode/SDL
         run: |
-          xcodebuild -scheme Framework ONLY_ACTIVE_ARCH=NO EXCLUDED_ARCHS="arm64" -configuration 'Release'
+          xcodebuild -scheme Framework VALID_ARCHS="i386 x86_64" -configuration 'Release'
           cp -r /Users/runner/Library/Developer/Xcode/DerivedData/SDL-gserqlkghybkaxdggwarbuabfcuy/Build/Products/Release/SDL2.framework ../../../SDL2.framework
       - name: Cache
         uses: actions/cache@main
@@ -29,53 +28,13 @@ jobs:
           path: SDL2.framework
   sdl_ttf:
     runs-on: macos-latest
-
     steps:
       - name: Get sdl_ttf source
         run: |
           git clone https://github.com/SDL-mirror/SDL_ttf.git
           cd SDL_ttf
-      #    git checkout $(git describe --tags `git rev-list --tags --max-count=1`)
-     # - name: Cache
-   #     uses: actions/cache@main
-    #    with:
-       #   key: sdl-mac-${{ github.run_id }}
-    #      path: SDL2.framework
-       #   git clone https://github.com/SDL-mirror/SDL.git
-      #    cd SDL
-     #     git checkout $(git describe --tags `git rev-list --tags --max-count=1`)
-     #     cd ..
-     #     git checkout $(git describe --tags `git rev-list --tags --max-count=1`)
-     #     mkdir build
-        #  wget https://github.com/opeik/cmake-modern-findsdl2/raw/master/FindSDL2.cmake 
+          git checkout $(git describe --tags `git rev-list --tags --max-count=1`)
       - name: build
         working-directory: SDL_ttf/Xcode
         run: |
           xcodebuild -scheme Framework VALID_ARCHS="i386 x86_64" -configuration 'Release'
-       # cp -r ../../SDL2.framework Frameworks/SDL2.framework
-       #   cmake -G Xcode -D BUILD_FRAMEWORK:BOOL=true -D SDL2_DIR=SDL .. 
-        #cmake .. -G "Xcode"
-        # sudo xcode-select -switch /Applications/Xcode_10.3.app/
-          
-        #  ./configure CC="sh gcc-fat.sh"
-     # - name: Set Default Scheme
-     #   working-directory: SDL_ttf/build/
-     #   run: |
-      #    scheme_list=$(xcodebuild -list -json | tr -d "\n")
-       #   default=$(echo $scheme_list | ruby -e "require 'json'; puts JSON.parse(STDIN.gets)['project']['targets'][0]")
-      #    echo $default | cat >default
-       #   echo Using default scheme: $default
-     # - name: Build freetype
-   #     run: |
-   #       curl -o freetype.tar.gz https://sourceforge.net/projects/freetype/files/latest/download
- #         tar -zxvf freetype.tar.gz -C freetype
-   #   - name: Build sdl_ttf
-   #     working-directory: SDL_ttf
-      #  env:
-    #      scheme: ${{ 'default' }}
-   #     run: |
-    #      make
-        #  if [[ $scheme = default ]]; then scheme=$(cat default); fi
-       #   xcodebuild -scheme "$scheme" -configuration 'Release'
-       # sudo xcode-select -switch /Applications/Xcode_10.3.app/          
-        # cp -r /Users/runner/Library/Developer/Xcode/DerivedData/SDL-gserqlkghybkaxdggwarbuabfcuy/Build/Products/Release/SDL2.framework ../../../SDL2.framework

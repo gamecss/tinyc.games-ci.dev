@@ -36,7 +36,7 @@ jobs:
           git clone https://github.com/SDL-mirror/SDL_ttf.git
           cd SDL_ttf
           git clone https://github.com/SDL-mirror/SDL.git
-          cd SDL2
+          cd SDL
           git checkout $(git describe --tags `git rev-list --tags --max-count=1`)
           cd ..
           git checkout $(git describe --tags `git rev-list --tags --max-count=1`)

@@ -1,1 +1,27 @@
+name: dependence-mac
 
+on:
+  push:
+    branches: [ ci ]
+  pull_request: 
+    branches: [ ci ]
+    
+jobs:
+  stb:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: checkout
+      - name: get
+        run: wget https://github.com/nothings/stb/raw/master/stb_image.h
+      - name: commit
+  osn:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: checkout
+      - name: get
+        run: |
+          wget https://github.com/smcameron/open-simplex-noise-in-c/raw/master/open-simplex-noise.c
+          wget https://github.com/smcameron/open-simplex-noise-in-c/raw/master/open-simplex-noise.h
+      - name: commit

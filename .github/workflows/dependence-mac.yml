@@ -73,4 +73,4 @@ jobs:
         run: |
           sudo xcode-select -switch /Applications/Xcode_10.3.app
           sudo cp ../../SDL2.framework/Headers/*	/Applications/Xcode_10.3.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/
-          xcodebuild -scheme Framework VALID_ARCHS="i386 x86_64" -configuration 'Release'
+          xcodebuild -scheme Framework VALID_ARCHS="i386 x86_64" MAC_OS_X_VERSION_MIN_REQUIRED=1060 -configuration 'Release'

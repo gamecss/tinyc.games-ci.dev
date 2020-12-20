@@ -20,7 +20,7 @@ jobs:
       - name: Build
         working-directory: SDL/Xcode/SDL
         run: |
-          xcodebuild -scheme Framework ONLY_ACTIVE_ARCH=NO -configuration 'Release'
+          xcodebuild -scheme Framework ONLY_ACTIVE_ARCH=NO EXCLUDED_ARCHS="arm64" -configuration 'Release'
           cp -r /Users/runner/Library/Developer/Xcode/DerivedData/SDL-gserqlkghybkaxdggwarbuabfcuy/Build/Products/Release/SDL2.framework ../../../SDL2.framework
       - name: Cache
         uses: actions/cache@main

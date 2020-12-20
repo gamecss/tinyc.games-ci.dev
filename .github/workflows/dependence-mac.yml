@@ -35,17 +35,17 @@ jobs:
         run: |
           git clone https://github.com/SDL-mirror/SDL_ttf.git
           cd SDL_ttf
-          git clone https://github.com/SDL-mirror/SDL.git SDL2
+          git clone https://github.com/SDL-mirror/SDL.git
           cd SDL2
           git checkout $(git describe --tags `git rev-list --tags --max-count=1`)
           cd ..
           git checkout $(git describe --tags `git rev-list --tags --max-count=1`)
           mkdir build
-          wget https://github.com/opeik/cmake-modern-findsdl2/raw/master/FindSDL2.cmake 
+        #  wget https://github.com/opeik/cmake-modern-findsdl2/raw/master/FindSDL2.cmake 
       - name: prepare build
         working-directory: SDL_ttf/build
         run: | 
-          cmake -G Xcode -D BUILD_FRAMEWORK:BOOL=true .. 
+          SDL2_DIR=SDL cmake -G Xcode -D BUILD_FRAMEWORK:BOOL=true .. 
         #cmake .. -G "Xcode"
         # sudo xcode-select -switch /Applications/Xcode_10.3.app/
           

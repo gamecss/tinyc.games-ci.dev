@@ -27,6 +27,7 @@ jobs:
           key: sdl-mac-${{ github.run_id }}
           path: SDL2.framework
   sdl_ttf:
+    needs: [sdl]
     runs-on: macos-latest
     steps:
       - name: Get sdl_ttf source
@@ -46,6 +47,7 @@ jobs:
           xcodebuild -scheme Framework VALID_ARCHS="i386 x86_64" -configuration 'Release'
   sdl_net:
     runs-on: macos-latest
+    needs: [sdl]
     steps:
       - name: Get sdl_net source
         run: |

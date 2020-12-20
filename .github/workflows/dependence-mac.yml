@@ -52,8 +52,8 @@ jobs:
       - name: Cache
         uses: actions/cache@main
         with:
-          key: sdl-mac-${{ github.run_id }}
-          path: SDL2.framework
+          key: sdl_ttf-mac-${{ github.run_id }}
+          path: SDL2_ttf.framework
   sdl_net:
     runs-on: macos-latest
     needs: [sdl]
@@ -77,3 +77,13 @@ jobs:
           sudo cp ../../SDL2.framework/Headers/*	/Applications/Xcode_10.3.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/       
           xcodebuild -scheme Framework VALID_ARCHS="i386 x86_64" MACOSX_DEPLOYMENT_TARGET=10.6 -configuration 'Release'
           cp -r /Users/runner/Library/Developer/Xcode/DerivedData/SDL_net-gzcqgyiujquawjdwohrmpxlxritl/Build/Products/Release/SDL2_net.framework ../../SDL2_net.framework
+      - name: cache
+        uses: actions/cache@main
+        with:
+          key: sdl_net-mac-${{ github.run_id }}
+          path: SDL2_net.framework
+  push:
+     runs-on: ubuntu-1804
+     steps:
+       - name: commit
+         run: echo "wait write"

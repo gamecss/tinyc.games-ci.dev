@@ -44,3 +44,21 @@ jobs:
         run: |
           cp -r ../../SDL2.framework ./Frameworks/SDL2.framework
           xcodebuild -scheme Framework VALID_ARCHS="i386 x86_64" -configuration 'Release'
+  sdl_net:
+    runs-on: macos-latest
+    steps:
+      - name: Get sdl_net source
+        run: |
+          git clone https://github.com/SDL-mirror/SDL_net.git
+          cd SDL_net
+          git checkout $(git describe --tags `git rev-list --tags --max-count=1`)
+      - name: Get sdl cache
+        uses: actions/cache@main
+        with:
+          key: sdl-mac-${{ github.run_id }}
+          path: SDL2.framework
+      - name: build
+        working-directory: SDL_net/Xcode
+        run: |
+          cp -r ../../SDL2.framework ./Frameworks/SDL2.framework
+          xcodebuild -scheme Framework VALID_ARCHS="i386 x86_64" -configuration 'Release'

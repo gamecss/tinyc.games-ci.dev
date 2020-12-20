@@ -62,7 +62,7 @@ jobs:
         run: |
           git clone https://github.com/SDL-mirror/SDL_net.git
           cd SDL_net
-          git checkout $(git describe --tags `git rev-list --tags --max-count=1`)
+        #  git checkout $(git describe --tags `git rev-list --tags --max-count=1`)
       - name: Get sdl cache
         uses: actions/cache@main
         with:
@@ -71,6 +71,6 @@ jobs:
       - name: build
         working-directory: SDL_net/Xcode
         run: |
-          sudo xcode-select -switch /Applications/Xcode_11.2.1.app
+          sudo xcode-select -switch /Applications/Xcode_10.3.app
           sudo cp ../../SDL2.framework/Headers/*	/Applications/Xcode_10.3.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/
           xcodebuild -scheme Framework VALID_ARCHS="i386 x86_64" -configuration 'Release'

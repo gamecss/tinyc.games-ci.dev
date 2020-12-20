@@ -20,7 +20,7 @@ jobs:
       - name: Build
         working-directory: SDL/Xcode/SDL
         run: |
-          xcodebuild -scheme framework ONLY_ACTIVE_ARCH=NO -configuration 'Release'
+          xcodebuild -scheme Framework ONLY_ACTIVE_ARCH=NO -configuration 'Release'
           cp -r /Users/runner/Library/Developer/Xcode/DerivedData/SDL-gserqlkghybkaxdggwarbuabfcuy/Build/Products/Release/SDL2.framework ../../../SDL2.framework
       - name: Cache
         uses: actions/cache@main
@@ -35,17 +35,25 @@ jobs:
         run: |
           git clone https://github.com/SDL-mirror/SDL_ttf.git
           cd SDL_ttf
-          git clone https://github.com/SDL-mirror/SDL.git
-          cd SDL
           git checkout $(git describe --tags `git rev-list --tags --max-count=1`)
-          cd ..
-          git checkout $(git describe --tags `git rev-list --tags --max-count=1`)
-          mkdir build
+      - name: Cache
+        uses: actions/cache@main
+        with:
+          key: sdl-mac-${{ github.run_id }}
+          path: SDL2.framework
+       #   git clone https://github.com/SDL-mirror/SDL.git
+      #    cd SDL
+     #     git checkout $(git describe --tags `git rev-list --tags --max-count=1`)
+     #     cd ..
+     #     git checkout $(git describe --tags `git rev-list --tags --max-count=1`)
+     #     mkdir build
         #  wget https://github.com/opeik/cmake-modern-findsdl2/raw/master/FindSDL2.cmake 
-      - name: prepare build
-        working-directory: SDL_ttf/build
-        run: | 
-          cmake -G Xcode -D BUILD_FRAMEWORK:BOOL=true -D SDL2_DIR=SDL .. 
+      - name: build
+        working-directory: SDL_ttf/Xcode
+        run: |
+          cp -r ../SDL2.framework Frameworks/SDL2.framework
+          xcodebuild -scheme Framework ONLY_ACTIVE_ARCH=NO -configuration 'Release'
+       #   cmake -G Xcode -D BUILD_FRAMEWORK:BOOL=true -D SDL2_DIR=SDL .. 
         #cmake .. -G "Xcode"
         # sudo xcode-select -switch /Applications/Xcode_10.3.app/
           

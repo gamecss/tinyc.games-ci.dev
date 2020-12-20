@@ -45,7 +45,7 @@ jobs:
       - name: prepare build
         working-directory: SDL_ttf/build
         run: | 
-          SDL2_DIR=SDL cmake -G Xcode -D BUILD_FRAMEWORK:BOOL=true .. 
+          cmake -G Xcode -D BUILD_FRAMEWORK:BOOL=true -D SDL2_DIR=SDL .. 
         #cmake .. -G "Xcode"
         # sudo xcode-select -switch /Applications/Xcode_10.3.app/
           

@@ -17,22 +17,16 @@ jobs:
           cd SDL
           git checkout $(git describe --tags `git rev-list --tags --max-count=1`)
           mkdir build
-      - name: Set Default Scheme
-        working-directory: SDL
-        run: |
-          sudo xcode-select -switch /Applications/Xcode_10.3.app/
-          scheme_list=$(xcodebuild -list -json | tr -d "\n")
-          default=$(echo $scheme_list | ruby -e "require 'json'; puts JSON.parse(STDIN.gets)['project']['targets'][0]")
-          echo $default | cat >default
-          echo Using default scheme: $default
       - name: Build
         working-directory: SDL/Xcode/SDL
-        env:
-          scheme: ${{ 'default' }}
         run: |
-          if [[ $scheme = default ]]; then scheme=$(cat default); fi
-          xcodebuild -scheme "$scheme" ONLY_ACTIVE_ARCH=NO -configuration 'Release'
+          xcodebuild -scheme "framework" ONLY_ACTIVE_ARCH=NO -configuration 'Release'
           cp -r /Users/runner/Library/Developer/Xcode/DerivedData/SDL-gserqlkghybkaxdggwarbuabfcuy/Build/Products/Release/SDL2.framework ../../../SDL2.framework
+      - name: Cache
+        uses: actions/cache@main
+        with:
+          key: sdl-mac-${{ github.run_id }}
+          path: SDL2.framework
   sdl_ttf:
     runs-on: macos-latest
 
@@ -41,8 +35,13 @@ jobs:
         run: |
           git clone https://github.com/SDL-mirror/SDL_ttf.git
           cd SDL_ttf
+          git clone https://github.com/SDL-mirror/SDL.git SDL2
+          cd SDL2
+          git checkout $(git describe --tags `git rev-list --tags --max-count=1`)
+          cd ..
           git checkout $(git describe --tags `git rev-list --tags --max-count=1`)
           mkdir build
+          wget https://github.com/opeik/cmake-modern-findsdl2/raw/master/FindSDL2.cmake 
       - name: prepare build
         working-directory: SDL_ttf/build
         run: | 

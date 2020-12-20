@@ -35,12 +35,12 @@ jobs:
         run: |
           git clone https://github.com/SDL-mirror/SDL_ttf.git
           cd SDL_ttf
-          git checkout $(git describe --tags `git rev-list --tags --max-count=1`)
-      - name: Cache
-        uses: actions/cache@main
-        with:
-          key: sdl-mac-${{ github.run_id }}
-          path: SDL2.framework
+      #    git checkout $(git describe --tags `git rev-list --tags --max-count=1`)
+     # - name: Cache
+   #     uses: actions/cache@main
+    #    with:
+       #   key: sdl-mac-${{ github.run_id }}
+    #      path: SDL2.framework
        #   git clone https://github.com/SDL-mirror/SDL.git
       #    cd SDL
      #     git checkout $(git describe --tags `git rev-list --tags --max-count=1`)
@@ -51,8 +51,8 @@ jobs:
       - name: build
         working-directory: SDL_ttf/Xcode
         run: |
-          cp -r ../../SDL2.framework Frameworks/SDL2.framework
           xcodebuild -scheme Framework ONLY_ACTIVE_ARCH=NO -configuration 'Release'
+       # cp -r ../../SDL2.framework Frameworks/SDL2.framework
        #   cmake -G Xcode -D BUILD_FRAMEWORK:BOOL=true -D SDL2_DIR=SDL .. 
         #cmake .. -G "Xcode"
         # sudo xcode-select -switch /Applications/Xcode_10.3.app/
